@@ -17,6 +17,7 @@ class App:
 
 		# setup routes
 		self.init_static_routes()
+		self.init_dynamic_routes()
 
 		self.init_default_routes()
 
@@ -29,6 +30,14 @@ class App:
 			for static_path in installation_config.static_paths:
 				print "adding static path '/%s' > '%s'" % (static_path["url_prefix"], static_path["local_path"])
 				self._app_config.add_static_view(name=static_path["url_prefix"], path=static_path["local_path"])
+
+	def init_dynamic_routes(self):
+		if installation_config.dynamic_url_handlers:
+			for dynamic_url_handler in installation_config.dynamic_url_handlers:
+				print "adding dynamic url handler '%s'" % (dynamic_url_handler["route"])
+
+				self._app_config.add_route(dynamic_url_handler["name"], dynamic_url_handler["route"])
+				self._app_config.add_view(dynamic_url_handler["view"], route_name=dynamic_url_handler["name"])				
 
 
 	def start(self):
