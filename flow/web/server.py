@@ -4,13 +4,14 @@ from pyramid.response import Response
 
 
 def page_server(request):
-	return Response("response - " % dir(request.matchdict))
+	return Response("response - [/%s]" % "/".join(request.subpath))
 
 def app_start(arg1):
 	print "starting web app..."
 
 config = Configurator()
-config.add_route("page_server", "")
+#config.add_route("page_server", "")
+config.add_route("page_server", "/*subpath")
 config.add_view(page_server, route_name="page_server")
 
 app = config.make_wsgi_app()
