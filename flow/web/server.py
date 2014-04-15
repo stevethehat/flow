@@ -1,3 +1,4 @@
+import imp
 import flow.web.config as installation_config
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
@@ -17,8 +18,9 @@ class App:
 
 		# setup routes
 		self.init_static_routes()
+		self.init_modules()
 		self.init_dynamic_routes()
-
+		
 		self.init_default_routes()
 
 	def init_default_routes(self):
@@ -39,6 +41,9 @@ class App:
 				self._app_config.add_route(dynamic_url_handler["name"], dynamic_url_handler["route"])
 				self._app_config.add_view(dynamic_url_handler["view"], route_name=dynamic_url_handler["name"])				
 
+	def init_modules(self):
+		module = imp.load_source("test_module", "C:\\Development\\Personal\\flow\\modules\\test_module.py")
+		module.init_web(self._app_config)
 
 	def start(self):
 		self.app = self._app_config.make_wsgi_app()

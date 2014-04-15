@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"sta",
+				"static_path"
+			],
+			[
+				"ini",
+				"init_static_routes"
+			],
+			[
 				"a",
 				"article_id"
 			],
@@ -352,10 +360,6 @@
 				"test_status"
 			],
 			[
-				"sta",
-				"status"
-			],
-			[
 				"outp",
 				"output_file"
 			],
@@ -510,10 +514,6 @@
 			[
 				"inp",
 				"inputElement"
-			],
-			[
-				"n",
-				"node_type"
 			]
 		]
 	},
@@ -640,6 +640,11 @@
 	},
 	"file_history":
 	[
+		"/C/Development/Personal/flow/flow/web/config.py",
+		"/C/Development/Personal/flow/flow/web/site.py",
+		"/C/Development/Personal/flow/flow/web/page.py",
+		"/C/Development/Personal/flow/modules/test_module.py",
+		"/C/Development/Personal/flow/flow/web/server.py",
 		"/C/Development/Clients/LV/gi.www.lv.com/c5/Sites/continuity/installation/brands/lv/css-src/partials/modules/_link-button.scss",
 		"/C/Development/Clients/LV/gi.www.lv.com/c5/deploy/package.bat",
 		"/C/Development/Clients/LV/gi.www.lv.com/c5/Sites/continuity/core/nodetypes/system/branches/branch/branch.nodeeditor",
@@ -762,12 +767,7 @@
 		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/contentelements/moxie/moxie.xml",
 		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/xsl/pagetemplates/dataviews/faq.xsl",
 		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/scripts/schedule_publish.bat",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/files/robots.txt",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/files/site-100127850863000/robots.txt",
-		"/C/Development/Clients/LV/www.lv.com/c5/deploy/package.bat",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/xsl/pagetemplates/pageelements.xsl",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/contentelements/google-remarketing-tag/google-remarketing-tag.xml",
-		"/C/Development/Clients/Electralink/dcusa/getdocuments.py"
+		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/files/robots.txt"
 	],
 	"find":
 	{
