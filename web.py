@@ -1,3 +1,3 @@
 from flow.web.server import *
 
-app_start()
+web_app_start()
