@@ -1,6 +1,6 @@
 /// <reference path="jquery.d.ts" />
 
-class MainMenu{
+export class MainMenu{
 	test(){
 		return("hello");
 	}
