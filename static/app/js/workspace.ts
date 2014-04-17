@@ -4,7 +4,14 @@
 module Workspace{
     class Workspace {
         constructor() {
-            MainMenu mainMenu = new MainMenu();
+            var mainMenu:Menus.MainMenu = new Menus.MainMenu();
+            mainMenu.populate(
+            [
+                {label: 'menu item1'},
+                {label: 'hgjgjghjgjgj', icon: 'hello'},
+                {label: 'sadadssa'}
+            ]
+            );
         }
         body: JQuery;
         test() {
