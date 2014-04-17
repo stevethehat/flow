@@ -519,6 +519,38 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "static/app/js/workspace.ts",
+			"settings":
+			{
+				"buffer_size": 280,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "static/app/js/menus.ts",
+			"settings":
+			{
+				"buffer_size": 93,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "static/app/js/test.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "static/app/js/jquery.d.ts",
+			"settings":
+			{
+				"buffer_size": 187910,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -640,11 +672,17 @@
 	},
 	"file_history":
 	[
+		"/C/Development/Personal/flow/flow/app/config.py",
+		"/C/Development/Personal/flow/flow/app/server.py",
+		"/C/Development/Personal/flow/flow/util/server_base.py",
+		"/C/Development/Personal/flow/static/app/html/workspace.htm",
+		"/C/Development/Personal/flow/web.py",
+		"/C/Development/Personal/flow/flow/web/server.py",
 		"/C/Development/Personal/flow/flow/web/config.py",
+		"/C/Development/Personal/flow/app.py",
 		"/C/Development/Personal/flow/flow/web/site.py",
 		"/C/Development/Personal/flow/flow/web/page.py",
 		"/C/Development/Personal/flow/modules/test_module.py",
-		"/C/Development/Personal/flow/flow/web/server.py",
 		"/C/Development/Clients/LV/gi.www.lv.com/c5/Sites/continuity/installation/brands/lv/css-src/partials/modules/_link-button.scss",
 		"/C/Development/Clients/LV/gi.www.lv.com/c5/deploy/package.bat",
 		"/C/Development/Clients/LV/gi.www.lv.com/c5/Sites/continuity/core/nodetypes/system/branches/branch/branch.nodeeditor",
@@ -761,13 +799,7 @@
 		"/C/Development/Clients/LV/www.lv.com/c5/deploy/admin-setup.bat",
 		"/C/Development/Clients/LV/www.lv.com/c5/deploy/frontend-setup.bat",
 		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/processors/moxie/results.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/HtmlDiff/file2.htm",
-		"/C/Development/Clients/LV/www.lv.com/c5/MoxieKB/MoxieKbUtility.cs",
-		"/C/Development/Clients/LV/MoxieKB/MoxieKbUtility/MoxieKbUtility.cs",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/contentelements/moxie/moxie.xml",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/xsl/pagetemplates/dataviews/faq.xsl",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/scripts/schedule_publish.bat",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/files/robots.txt"
+		"/C/Development/Clients/LV/www.lv.com/c5/HtmlDiff/file2.htm"
 	],
 	"find":
 	{
@@ -1121,8 +1153,117 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "static/app/js/workspace.ts",
+					"settings":
+					{
+						"buffer_size": 280,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "static/app/js/menus.ts",
+					"settings":
+					{
+						"buffer_size": 93,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "static/app/js/test.js",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "static/app/js/jquery.d.ts",
+					"settings":
+					{
+						"buffer_size": 187910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								52794,
+								52794
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 20434.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

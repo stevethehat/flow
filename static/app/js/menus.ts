@@ -1,22 +1,28 @@
 /// <reference path="jquery.d.ts" />
+/// <reference path="actions.ts" />
 
 module Menus{
-				export interface MenuClick{
-								(event: any): boolean;
-				}
+    export interface MenuElement extends Actions.ActionElement{ 
+        subElements?:Actions.ActionElements;
+    }
+    
+    export class BarMenu{
+        private _container: JQuery;
+        constructor(container: JQuery) {
+            this._container = container;
+            this._container
+                .attr('role', 'navigation')
+                .addClass('navbar navbar-default');
 
-				export interface MenuElement{
-								label: string;
-								icon?: string;
-				}
-				
-				export interface MenuElements{
-								[index: number]: MenuElement;
-				}
+            this._container.append
+        }
 
-				export class MainMenu{
-								populate(elements: MenuElements){
-												return("hello");
-								}
-				}
+        populate(elements: Actions.ActionElements): void{
+			alert("hello");
+        }
+
+        private addElement(): void {
+
+        }
+    }
 }
