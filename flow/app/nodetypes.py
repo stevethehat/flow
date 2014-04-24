@@ -1,26 +1,60 @@
-import os
+import os, ast, imp, sys
+from decorators import BaseDecorator
 """
 nodetypes
 """
 
+sys.path.append("/Users/stevethehat/Development/flow")
+
+def ast_loader(full_file_name, default):
+	result = default
+	if os.path.exists(full_file_name):
+		object_file = open(full_file_name, "r")
+		result = ast.literal_eval(object_file.read())
+		object_file.close()
+	return(result)
+
 class NodeTypes:
 	def __init__(self):
 		print "init NodeTypes..."
-
+		self.root_path = "/Users/stevethehat/Development/flow/modules"
 		self.definitions = []
 
 	def nodedefinition_processor(self, file_name):
 		print "nodedefinition_processor %s" % file_name
+		try:
+			definition_file = open(file_name, "r")
+			definition = ast.literal_eval(definition_file.read())
+			definition_file.close()
+
+			self.definitions.append(definition)
+		except Exception, e: 
+			print "Exception processing %s\n%s" % (file_name, e.message)
 
 	def nodeclass_processor(self, file_name):
 		print "nodeclass_processor %s" % file_name
+		imp.load_source("page", file_name)
 
 	def rebuild(self):
 		print "rebuild nodetypes..."
 		print "\n\nbuild nodedefs"
 		self.walk_directories(".nodedef", self.nodedefinition_processor)
 		print "\n\nbuild classes"
+
+		full_file_name = os.path.join(self.root_path, "nodeclasses")
+		if os.path.exists(full_file_name):
+			os.remove(full_file_name)
+
+		full_file_name = os.path.join(self.root_path, "nodeactions")
+		if os.path.exists(full_file_name):
+			os.remove(full_file_name)
+
 		self.walk_directories(".py", self.nodeclass_processor)
+
+	def output(self):
+		print self.definitions
+		print str(ast_loader(os.path.join(self.root_path, "nodeclasses"), []))
+		print str(ast_loader(os.path.join(self.root_path, "nodeactions"), []))
 
 	def walk_directory(self, path, file_type, processor):
 		print "\n>> %s" % path
@@ -28,60 +62,50 @@ class NodeTypes:
 
 		for file_name in os.listdir(path):
 			full_file_name = os.path.join(path, file_name)
+
 			if os.path.isdir(full_file_name):
 				self.walk_directory(full_file_name, file_type, processor)
+
 			if os.path.isfile(full_file_name):
 				if full_file_name.endswith(ext):
 					processor(full_file_name)
 
-
-
 	def walk_directories(self, file_type, processor):
-		root_path = "/Users/stevethehat/Development/flow/modules"
-		self.walk_directory(root_path, file_type, processor)
+		self.walk_directory(self.root_path, file_type, processor)
 
-		"""
-		test_dir = os.path.dirname(os.path.realpath(__file__))
-		print "run tests in '%s'...\n\n" % test_dir
 
-		for file_name in os.listdir(test_dir):
-			if file_name.endswith(".py") and not(file_name == "admintest.py"):
-				print "looking for tests in '%s'...\n" % file_name
+class NodeDecorator(BaseDecorator):
+	def output_details(self, file_name, details):
+		full_file_name = "/Users/stevethehat/Development/flow/modules/%s" % file_name
 
-				test_module = __import__(file_name[:-3])
+		node_classes = ast_loader(full_file_name, [])
+		node_classes.append(details)
 
-				for test_member in getmembers(test_module):
-					test_name = test_member[0]
-					test_function = test_member[1]
+		if os.path.exists(full_file_name):
+			os.remove(full_file_name)
 
-					if(test_name.startswith("test_")):
-						if isfunction(test_function):
-							print test_member
-							function = getattr(test_module, test_name)
-							function(self)
-		"""
+		node_classes_file = open(full_file_name, "w")
+		node_classes_file.write(str(node_classes))
+		node_classes_file.close()
 
-os.system("cls")
-nt = NodeTypes()
-nt.rebuild()
+
+class NodeClass(NodeDecorator):
+	def __init__(self, nodetype):
+		print "register nodeclass '%s'" % nodetype
+		self.output_details("nodeclasses", nodetype)
+
+class NodeAction(NodeDecorator):
+	def __init__(self, description):
+		print "register nodeaction '%s'" % description
+		self.output_details("nodeactions", description)
+
+
+if __name__ == "__main__":
+	os.system("clear")
+	nt = NodeTypes()
+	nt.rebuild()
+	nt.output()
+
+	print "\n\n"
+	print nt.definitions
 		
-
-"""
-class Singleton(object):
-	__instance = None
-
-	def __new__(cls):
-		if cls.__instance == None:
-			__instance = object.__new__(cls)
-			__instance.name = "the one"
-		return(__instance)
-
-
-test1 = Singleton()
-test2 = Singleton()
-
-print test1
-print test2
-
-
-"""
