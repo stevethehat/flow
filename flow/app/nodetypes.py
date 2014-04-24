@@ -1,4 +1,4 @@
-import os, ast, imp, sys
+import os, ast, imp, sys, pprint
 from decorators import BaseDecorator
 """
 nodetypes
@@ -23,21 +23,23 @@ def save_ast(full_file_name, obj):
 	object_file.close()
 
 class NodeTypes:
-	def __init__(self):
+	def __init__(self, root_path):
 		print "init NodeTypes..."
-		self.root_path = "/Users/stevethehat/Development/flow/modules"
+		self.root_path = root_path
 		self.node_definitions_filename = os.path.join(self.root_path, "nodedefinitions")
 		self.node_classes_filename = os.path.join(self.root_path, "nodeclasses")
 		self.node_actions_filename = os.path.join(self.root_path, "nodeactions")
-		self.definitions = []
+		self.definitions = {}
 
 		if not(os.path.exists(self.node_definitions_filename)) or not(os.path.exists(self.node_classes_filename)) or not(os.path.exists(self.node_actions_filename)):
 			self.rebuild()
 
-		self.definitions = load_ast(self.node_definitions_filename, [])
+		self.load()
+
+	def load(self):
+		self.definitions = load_ast(self.node_definitions_filename, {})
 		self.classes = load_ast(self.node_classes_filename, [])
 		self.actions = load_ast(self.node_actions_filename, [])
-
 
 	def nodedefinition_processor(self, file_name):
 		print "nodedefinition_processor %s" % file_name
@@ -45,7 +47,18 @@ class NodeTypes:
 			definition_file = open(file_name, "r")
 			definition = ast.literal_eval(definition_file.read())
 			definition_file.close()
-			self.definitions.append(definition)
+
+			if not(definition.has_key("parentnodes")):
+				definition["parentnodes"] = []
+
+			if not(definition.has_key("childnodes")):
+				definition["childnodes"] = []
+
+			if not(definition.has_key("actions")):
+				definition["actions"] = []
+
+
+			self.definitions[definition["name"]] = definition
 		except Exception, e: 
 			print "Exception processing %s\n%s" % (file_name, e.message)
 
@@ -53,11 +66,22 @@ class NodeTypes:
 		print "nodeclass_processor %s" % file_name
 		imp.load_source("page", file_name)
 
+	def process_definitions(self):
+		def process_parent_nodes(definition):
+			parent_nodes = definition["parentnodes"]
+			for parent_node in parent_nodes:
+				self.definitions[parent_node]["childnodes"].append(definition["name"])
+
+
+
+		for name in self.definitions:
+			definition = self.definitions[name]
+			process_parent_nodes(definition)
+
+		pass
+
 	def rebuild(self):
 		print "rebuild nodetypes..."
-		print "\n\nbuild nodedefs"
-		self.walk_directories(".nodedef", self.nodedefinition_processor)
-		print "\n\nbuild classes"
 
 		if os.path.exists(self.node_definitions_filename):
 			os.remove(self.node_definitions_filename)
@@ -68,14 +92,16 @@ class NodeTypes:
 		if os.path.exists(self.node_actions_filename):
 			os.remove(self.node_actions_filename)
 
+		print "\n\nbuild nodedefs"
+		self.walk_directories(".nodedef", self.nodedefinition_processor)
+
+		print "\n\nbuild classes"
 		self.walk_directories(".py", self.nodeclass_processor)
 
-		save_ast(self.node_definitions_filename, self.definitions)
+		self.process_definitions()
 
-	def output(self):
-		print "definitions\n%s" % self.definitions
-		print "nodeclasses\n%s" % load_ast(self.node_classes_filename, [])
-		print "nodeactions\n%s" % load_ast(self.node_actions_filename, [])
+		save_ast(self.node_definitions_filename, self.definitions)
+		self.load()
 
 	def walk_directory(self, path, file_type, processor):
 		print "\n>> %s" % path
@@ -94,17 +120,18 @@ class NodeTypes:
 	def walk_directories(self, file_type, processor):
 		self.walk_directory(self.root_path, file_type, processor)
 
+	def output(self):
+		print "definitions\n%s" % pprint.pformat(self.definitions)
+		print "nodeclasses\n%s" % pprint.pformat(self.classes)
+		print "nodeactions\n%s" % pprint.pformat(self.actions)
 
 class NodeDecorator(BaseDecorator):
 	def output_details(self, file_name, details):
 		full_file_name = "/Users/stevethehat/Development/flow/modules/%s" % file_name
 
-		node_classes = load_ast(full_file_name, [])
-		node_classes.append(details)
-
-		save_ast(full_file_name, node_classes)
-		if os.path.exists(full_file_name):
-			os.remove(full_file_name)
+		node_objs = load_ast(full_file_name, [])
+		node_objs.append(details)
+		save_ast(full_file_name, node_objs)
 
 class NodeClass(NodeDecorator):
 	def __init__(self, nodetype):
@@ -119,6 +146,6 @@ class NodeAction(NodeDecorator):
 
 if __name__ == "__main__":
 	os.system("clear")
-	nt = NodeTypes()
-	#nt.rebuild()
+	nt = NodeTypes("/Users/stevethehat/Development/flow/modules")
+	nt.rebuild()
 	nt.output()	
