@@ -54,6 +54,9 @@ class NodeTypes:
 				if not(definition.has_key(key)):
 					definition[key] = default
 
+			ensure_definition_element("description", "No description specified")
+			ensure_definition_element("icon", "default")
+			ensure_definition_element("editor", [])
 			ensure_definition_element("parentnodes", [])
 			ensure_definition_element("childnodes", [])
 			ensure_definition_element("actions", [])
