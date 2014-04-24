@@ -6,7 +6,7 @@ nodetypes
 
 sys.path.append("/Users/stevethehat/Development/flow")
 
-def ast_loader(full_file_name, default):
+def load_ast(full_file_name, default):
 	result = default
 	if os.path.exists(full_file_name):
 		object_file = open(full_file_name, "r")
@@ -14,11 +14,30 @@ def ast_loader(full_file_name, default):
 		object_file.close()
 	return(result)
 
+def save_ast(full_file_name, obj):
+	if os.path.exists(full_file_name):
+		os.remove(full_file_name)
+
+	object_file = open(full_file_name, "w")
+	object_file.write(str(obj))
+	object_file.close()
+
 class NodeTypes:
 	def __init__(self):
 		print "init NodeTypes..."
 		self.root_path = "/Users/stevethehat/Development/flow/modules"
+		self.node_definitions_filename = os.path.join(self.root_path, "nodedefinitions")
+		self.node_classes_filename = os.path.join(self.root_path, "nodeclasses")
+		self.node_actions_filename = os.path.join(self.root_path, "nodeactions")
 		self.definitions = []
+
+		if not(os.path.exists(self.node_definitions_filename)) or not(os.path.exists(self.node_classes_filename)) or not(os.path.exists(self.node_actions_filename)):
+			self.rebuild()
+
+		self.definitions = load_ast(self.node_definitions_filename, [])
+		self.classes = load_ast(self.node_classes_filename, [])
+		self.actions = load_ast(self.node_actions_filename, [])
+
 
 	def nodedefinition_processor(self, file_name):
 		print "nodedefinition_processor %s" % file_name
@@ -26,7 +45,6 @@ class NodeTypes:
 			definition_file = open(file_name, "r")
 			definition = ast.literal_eval(definition_file.read())
 			definition_file.close()
-
 			self.definitions.append(definition)
 		except Exception, e: 
 			print "Exception processing %s\n%s" % (file_name, e.message)
@@ -41,20 +59,23 @@ class NodeTypes:
 		self.walk_directories(".nodedef", self.nodedefinition_processor)
 		print "\n\nbuild classes"
 
-		full_file_name = os.path.join(self.root_path, "nodeclasses")
-		if os.path.exists(full_file_name):
-			os.remove(full_file_name)
+		if os.path.exists(self.node_definitions_filename):
+			os.remove(self.node_definitions_filename)
 
-		full_file_name = os.path.join(self.root_path, "nodeactions")
-		if os.path.exists(full_file_name):
-			os.remove(full_file_name)
+		if os.path.exists(self.node_classes_filename):
+			os.remove(self.node_classes_filename)
+
+		if os.path.exists(self.node_actions_filename):
+			os.remove(self.node_actions_filename)
 
 		self.walk_directories(".py", self.nodeclass_processor)
 
+		save_ast(self.node_definitions_filename, self.definitions)
+
 	def output(self):
-		print self.definitions
-		print str(ast_loader(os.path.join(self.root_path, "nodeclasses"), []))
-		print str(ast_loader(os.path.join(self.root_path, "nodeactions"), []))
+		print "definitions\n%s" % self.definitions
+		print "nodeclasses\n%s" % load_ast(self.node_classes_filename, [])
+		print "nodeactions\n%s" % load_ast(self.node_actions_filename, [])
 
 	def walk_directory(self, path, file_type, processor):
 		print "\n>> %s" % path
@@ -78,16 +99,12 @@ class NodeDecorator(BaseDecorator):
 	def output_details(self, file_name, details):
 		full_file_name = "/Users/stevethehat/Development/flow/modules/%s" % file_name
 
-		node_classes = ast_loader(full_file_name, [])
+		node_classes = load_ast(full_file_name, [])
 		node_classes.append(details)
 
+		save_ast(full_file_name, node_classes)
 		if os.path.exists(full_file_name):
 			os.remove(full_file_name)
-
-		node_classes_file = open(full_file_name, "w")
-		node_classes_file.write(str(node_classes))
-		node_classes_file.close()
-
 
 class NodeClass(NodeDecorator):
 	def __init__(self, nodetype):
@@ -103,9 +120,5 @@ class NodeAction(NodeDecorator):
 if __name__ == "__main__":
 	os.system("clear")
 	nt = NodeTypes()
-	nt.rebuild()
-	nt.output()
-
-	print "\n\n"
-	print nt.definitions
-		
+	#nt.rebuild()
+	nt.output()	
