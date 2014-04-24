@@ -9,7 +9,7 @@ module Menus{
 								label: string;
 								icon?: string;
 				}
-				
+
 				export interface MenuElements{
 								[index: number]: MenuElement;
 				}
