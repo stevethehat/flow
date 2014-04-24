@@ -14,19 +14,16 @@ module Workspace{
                     {label: 'sadadssa'}
                 ]
             );
-
             alert('done init');
         }
         body: JQuery;
         test() {
-            return ("hello");
+            return ('hello from test');
         }
     }
     $(document).ready(
         function(){
-            alert('start ready');
             var workspace: Workspace = new Workspace();        
-            alert('end ready');
         }
     );
 }

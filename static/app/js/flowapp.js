@@ -33,17 +33,14 @@ var Workspace;
                 { label: 'hgjgjghjgjgj', icon: 'hello' },
                 { label: 'sadadssa' }
             ]);
-
             alert('done init');
         }
         Workspace.prototype.test = function () {
-            return ("hello");
+            return ('hello from test');
         };
         return Workspace;
     })();
     $(document).ready(function () {
-        alert('start ready');
         var workspace = new Workspace();
-        alert('end ready');
     });
 })(Workspace || (Workspace = {}));

@@ -14,11 +14,12 @@ module Menus{
                 .attr('role', 'navigation')
                 .addClass('navbar navbar-default');
 
-            this._container.append
+            this._container.append('div')
+                .addClass('container-fluid');
         }
 
         populate(elements: Actions.ActionElements): void{
-			alert("hello");
+			alert("populate");
         }
 
         private addElement(): void {
