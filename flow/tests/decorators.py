@@ -1,29 +1,31 @@
 import os
 os.system("cls")
 
-class Node:
-	def __init__(self, c):
-		self.c = c
-		print "we have a node implementor!!!"
+class BaseDecorator:
+	def __init__(self):
+		self._message = ""
 
-	def __call__(self):
-		print "\n>>init object"
-		c = self.c()
-		print "<<init object\n"
-		return(c)
+	def __call__(self, f):
+		def wrapper(*args):
+			print "\n>>%s" % self._message
+			wrapped_f = f(*args)
+			print "<<%s\n" % self._message
+			return(wrapped_f)
+		return(wrapper)
 
-class NodeAction:
-	def __init__(self, f, description):
-		self.f = f
+
+class NodeClass(BaseDecorator):
+	def __init__(self, nodetype):
+		print "we have a node implementor!!! '%s'" % nodetype
+		self._message = "NodeClass init"
+
+class NodeAction(BaseDecorator):
+	def __init__(self, description):
 		print "we have a node action implementor!!! '%s'" % description
+		self._message = "NodeAction call"
 
-	def __call__(self):
-		print "\n>>method call"
-		f = self.f(self)
-		print "<<method call\n"
-		return(f)
 
-@Node
+@NodeClass("page")
 class Page:
 	def __init__(self):
 		print "in page init"
@@ -32,11 +34,12 @@ class Page:
 	def EditContent(self):
 		print "Edit content on page"
 
-
-
-
+print "test page 1"
 page = Page()
 page.EditContent()
 
+print "test page 2"
+page2 = Page()
+page2.EditContent()
 
 print "decorators test"
