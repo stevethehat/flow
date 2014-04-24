@@ -50,15 +50,13 @@ class NodeTypes:
 			definition = ast.literal_eval(definition_file.read())
 			definition_file.close()
 
-			if not(definition.has_key("parentnodes")):
-				definition["parentnodes"] = []
+			def ensure_definition_element(key, default):
+				if not(definition.has_key(key)):
+					definition[key] = default
 
-			if not(definition.has_key("childnodes")):
-				definition["childnodes"] = []
-
-			if not(definition.has_key("actions")):
-				definition["actions"] = []
-
+			ensure_definition_element("parentnodes", [])
+			ensure_definition_element("childnodes", [])
+			ensure_definition_element("actions", [])
 
 			self.definitions[definition["name"]] = definition
 		except Exception, e: 
