@@ -4,18 +4,26 @@
 module Workspace{
     class Workspace {
         constructor() {
-            var mainMenu:Menus.MainMenu = new Menus.MainMenu();
+            this.body = $('body');
+
+            var mainMenu: Menus.BarMenu = new Menus.BarMenu($('#mainMenu'));
             mainMenu.populate(
-            [
-                {label: 'menu item1'},
-                {label: 'hgjgjghjgjgj', icon: 'hello'},
-                {label: 'sadadssa'}
-            ]
+                [
+                    {label: 'menu item1'},
+                    {label: 'hgjgjghjgjgj', icon: 'hello'},
+                    {label: 'sadadssa'}
+                ]
             );
+            alert('done init');
         }
         body: JQuery;
         test() {
-            return ("hello");
+            return ('hello from test');
         }
     }
+    $(document).ready(
+        function(){
+            var workspace: Workspace = new Workspace();        
+        }
+    );
 }
