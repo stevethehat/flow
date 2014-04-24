@@ -135,14 +135,20 @@ class NodeDecorator(BaseDecorator):
 
 class NodeClass(NodeDecorator):
 	def __init__(self, nodetype):
-		print "register nodeclass '%s'" % nodetype
-		self.output_details("nodeclasses", nodetype)
+		self.nodetype = nodetype
+
+	def oncall(self, o):
+		print "register nodeclass '%s' = '%s'" % (self.nodetype, o.__name__)
+		self.output_details("nodeclasses", { "nodetype": self.nodetype, "class": o.__name__ })
+
 
 class NodeAction(NodeDecorator):
 	def __init__(self, description):
-		print "register nodeaction '%s'" % description
-		self.output_details("nodeactions", description)
+		self.description = description
 
+	def oncall(self, o):
+		print "register nodeaction '%s' = '%s'" % (self.description, o.__name__)
+		self.output_details("nodeactions", { "class": "", "method": o.__name__, "description": self.description })
 
 if __name__ == "__main__":
 	os.system("clear")
