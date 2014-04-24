@@ -30,6 +30,8 @@ class NodeTypes:
 		self.node_classes_filename = os.path.join(self.root_path, "nodeclasses")
 		self.node_actions_filename = os.path.join(self.root_path, "nodeactions")
 		self.definitions = {}
+		self.classes = []
+		self.actions = []
 
 		if not(os.path.exists(self.node_definitions_filename)) or not(os.path.exists(self.node_classes_filename)) or not(os.path.exists(self.node_actions_filename)):
 			self.rebuild()
@@ -72,8 +74,6 @@ class NodeTypes:
 			for parent_node in parent_nodes:
 				self.definitions[parent_node]["childnodes"].append(definition["name"])
 
-
-
 		for name in self.definitions:
 			definition = self.definitions[name]
 			process_parent_nodes(definition)
@@ -92,10 +92,10 @@ class NodeTypes:
 		if os.path.exists(self.node_actions_filename):
 			os.remove(self.node_actions_filename)
 
-		print "\n\nbuild nodedefs"
+		print "\nbuild nodedefs"
 		self.walk_directories(".nodedef", self.nodedefinition_processor)
 
-		print "\n\nbuild classes"
+		print "\nbuild classes"
 		self.walk_directories(".py", self.nodeclass_processor)
 
 		self.process_definitions()
@@ -104,7 +104,6 @@ class NodeTypes:
 		self.load()
 
 	def walk_directory(self, path, file_type, processor):
-		print "\n>> %s" % path
 		ext = file_type[:len(file_type)]
 
 		for file_name in os.listdir(path):
@@ -121,6 +120,7 @@ class NodeTypes:
 		self.walk_directory(self.root_path, file_type, processor)
 
 	def output(self):
+		print ""
 		print "definitions\n%s" % pprint.pformat(self.definitions)
 		print "nodeclasses\n%s" % pprint.pformat(self.classes)
 		print "nodeactions\n%s" % pprint.pformat(self.actions)
