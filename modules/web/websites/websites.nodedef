@@ -1,6 +1,8 @@
 {
 	"name": "websites",
+	"description": "A collection of websites",
 	"parentnodes": [
-		"root"
+		"root",
+		"websites"
 	]
 }

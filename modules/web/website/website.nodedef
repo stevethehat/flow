@@ -1,5 +1,7 @@
 {
 	"name": "website",
+	"description": "A distinct website",
+	"icon": "website",
 	"parentnodes":[
 		"websites"
 	]
