@@ -65,9 +65,18 @@ class NodeTypes:
 		except Exception, e: 
 			print "Exception processing %s\n%s" % (file_name, e.message)
 
-	def nodeclass_processor(self, file_name):
+	def nodemodule_processor(self, file_name):
 		print "nodeclass_processor %s" % file_name
-		imp.load_source("page", file_name)
+
+		module_file = open(file_name, "r")
+		code = module_file.read()
+		module_file.close()
+
+		module_processor = ModuleProcessor()
+		module_processor.visit(ast.parse(code))
+
+		self.classes = self.classes + module_processor.node_classes
+		self.actions = self.actions + module_processor.node_actions
 
 	def process_definitions(self):
 		def process_parent_nodes(definition):
@@ -93,15 +102,22 @@ class NodeTypes:
 		if os.path.exists(self.node_actions_filename):
 			os.remove(self.node_actions_filename)
 
+		self.definitions = {}
+		self.classes = []
+		self.actions = []
+		
+
 		print "\nbuild nodedefs"
 		self.walk_directories(".nodedef", self.nodedefinition_processor)
 
 		print "\nbuild classes"
-		self.walk_directories(".py", self.nodeclass_processor)
+		self.walk_directories(".py", self.nodemodule_processor)
 
 		self.process_definitions()
 
 		save_ast(self.node_definitions_filename, self.definitions)
+		save_ast(self.node_classes_filename, self.classes)
+		save_ast(self.node_actions_filename, self.actions)
 		self.load()
 
 	def walk_directory(self, path, file_type, processor):
@@ -126,40 +142,72 @@ class NodeTypes:
 		print "nodeclasses\n%s" % pprint.pformat(self.classes)
 		print "nodeactions\n%s" % pprint.pformat(self.actions)
 
-class NodeDecorator(BaseDecorator):
-	def output_details(self, file_name, details):
-		full_file_name = "/Users/stevethehat/Development/flow/modules/%s" % file_name
 
-		node_objs = load_ast(full_file_name, [])
-		node_objs.append(details)
-		save_ast(full_file_name, node_objs)
+class ModuleProcessor(ast.NodeVisitor):
+	def __init__(self):
+		self.current_class = ""
+		self.node_classes = []
+		self.node_actions = []
+
+	def get_decorator_info(self, function_def, required_decorator):
+		result = None
+		for decorator in function_def.decorator_list:
+			if str(decorator.func.id) == str(required_decorator):
+				result = []
+				for arg in decorator.args:
+					result.append(arg.s)
+		return(result)
+
+	def process_possible_node_action(self, function_def):
+		decorator_info = self.get_decorator_info(function_def, "NodeAction")
+
+		if decorator_info != None:
+			self.node_actions.append(
+				{
+					"arguments": decorator_info,
+					"name": function_def.name,
+					"class": self.current_class
+				}
+			)
+
+	def process_possible_node_class(self, class_def):
+		decorator_info = self.get_decorator_info(class_def, "NodeClass")
+
+		if decorator_info != None:
+			self.node_classes.append(
+				{
+					"class": class_def.name,
+					"arguments": decorator_info
+				}
+			)
+			self.current_class = class_def.name
+
+	def generic_visit(self, node):
+		node_type = type(node).__name__
+
+		if node_type == "ClassDef":
+			self.process_possible_node_class(node)
+
+		if node_type == "FunctionDef":
+			self.process_possible_node_action(node)
+
+		ast.NodeVisitor.generic_visit(self, node)
+
+
+class NodeDecorator(BaseDecorator):
+	def __init__(self):
+		pass
 
 class NodeClass(NodeDecorator):
 	def __init__(self, nodetype):
-		self.nodetype = nodetype
-
-	def oncall(self, o):
-		print "register nodeclass '%s' = '%s'" % (self.nodetype, o.__name__)
-		self.output_details("nodeclasses", { "nodetype": self.nodetype, "class": o.__name__ })
-
+		pass
 
 class NodeAction(NodeDecorator):
 	def __init__(self, description):
-		self.description = description
-
-	def oncall(self, o):
-		print "register nodeaction '%s' = '%s'" % (self.description, o.__name__)
-
-		class_name = "unknown"
-		print "TEST '%s'" % dir(o.__class__.__name__)
-		print "VALUE '%s'" % o.__class__.__name__
-		#args_map = inspect.getcallargs(o)
-		#if "self" in args_map:
-		#	class_name = args_map["self"].__class__.__name__
-		self.output_details("nodeactions", { "class": class_name, "method": o.__name__, "description": self.description })
+		pass
 
 if __name__ == "__main__":
 	os.system("clear")
 	nt = NodeTypes("/Users/stevethehat/Development/flow/modules")
 	nt.rebuild()
-	#nt.output()	
+	nt.output()	
