@@ -1,4 +1,4 @@
-import os, ast, imp, sys, pprint
+import os, ast, imp, sys, pprint, inspect
 from decorators import BaseDecorator
 """
 nodetypes
@@ -149,10 +149,17 @@ class NodeAction(NodeDecorator):
 
 	def oncall(self, o):
 		print "register nodeaction '%s' = '%s'" % (self.description, o.__name__)
-		self.output_details("nodeactions", { "class": "", "method": o.__name__, "description": self.description })
+
+		class_name = "unknown"
+		print "TEST '%s'" % dir(o.__class__.__name__)
+		print "VALUE '%s'" % o.__class__.__name__
+		#args_map = inspect.getcallargs(o)
+		#if "self" in args_map:
+		#	class_name = args_map["self"].__class__.__name__
+		self.output_details("nodeactions", { "class": class_name, "method": o.__name__, "description": self.description })
 
 if __name__ == "__main__":
 	os.system("clear")
 	nt = NodeTypes("/Users/stevethehat/Development/flow/modules")
 	nt.rebuild()
-	nt.output()	
+	#nt.output()	
