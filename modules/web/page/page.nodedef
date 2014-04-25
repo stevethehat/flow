@@ -1,0 +1,7 @@
+{
+	"name": "page",
+	"parentnodes":[
+		"website",
+		"page"
+	]
+}
