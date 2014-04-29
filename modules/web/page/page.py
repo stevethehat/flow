@@ -12,3 +12,10 @@ class Page:
 	@NodeAction("Edit Content")
 	def edit_content(self):
 		pass
+
+	def other_method(self):
+		pass
+
+class NotANodeClass():
+	def __init__(self):
+		pass
