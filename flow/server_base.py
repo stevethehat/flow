@@ -4,7 +4,12 @@ from pyramid.config import Configurator
 from pyramid.response import Response
 
 def page_server(request):
-	response = "<h1>Test 3</h1><p>[%s]</p><p>[%s]</p>[%s]" % ("/".join(request.subpath), request.user_agent, str(request.registry))	
+	response = """
+	<h1>/admin</h1>
+	<p>[%s]</p>
+	<p>[%s]</p>
+	<p>[%s]</p>""" % ("/".join(request.subpath), request.user_agent, str(request.registry))	
+	
 	return Response(response)
 
 class ServerBase:
