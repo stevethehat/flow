@@ -1,4 +1,5 @@
 from pyramid.response import Response
+import admin_handler
 
 # example config
 static_paths = [
@@ -11,12 +12,8 @@ def test_dynamic_handler(request):
 	return(Response("hello this is a dynamic page"))
 
 def nodes_handler(request):
-	response = """here is a response for [%s]""" % "/".join(request.subpath)
-	print "[%s]" % request.matchdict
-	return(Response(response))
-
+	return(admin_handler.admin_handler(request))
 
 dynamic_url_handlers = [
-	#{ "route": "/dynamic/{url}", "name": "dynamic_test", "view": test_dynamic_handler},
-	{ "route": "/nodes/{action}/*nodeuri", "name": "nodes_handler", "view": nodes_handler}
+	{ "route": "/nodes/{action}/*subpath", "name": "nodes_handler", "view": nodes_handler}
 ]
