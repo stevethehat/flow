@@ -1,17 +1,19 @@
 import os
+from nodestore_file import NodeStore_File
+from node import Node
 
 class Hierarchy():
 	def __init__(self):
-		self.root_path = "/Users/stevethehat/Development/flow/nodes"
-		pass
+		self.store = NodeStore_File()
 
 	def get_node(self, uid):
-		full_path = self.root_path
-		for uid_bit in uid.split("/"):
-			full_path = os.path.join(full_path, uid_bit)
-
-		full_path = os.path.join(full_path, ".node")
-		print full_path
+		print "Hierarchy.get_node '%s'" % uid
+		node = Node(self, uid)
+		print node
+		return(node)
 
 	def add_node(self, parent_uid, nodetype):
-		pass
+		data = {
+			"nodetype": nodetype, "parent_uid": parent_uid, "uid": ""
+		}
+		return(self.get_node(uid))
