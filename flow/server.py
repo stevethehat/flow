@@ -1,13 +1,13 @@
 import imp
 import sys
-import config as installation_config
+import app.config as installation_config
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.response import Response
-from flow.util.server_base import ServerBase
+from server_base import ServerBase
 
 def page_server(request):
-	response = "<h1>Test 1</h1><p>[%s]</p><p>[%s]</p>[%s]" % ("/".join(request.subpath), request.user_agent, str(request.registry))	
+	response = "<h1>Test 2</h1><p>[%s]</p><p>[%s]</p>[%s]" % ("/".join(request.subpath), request.user_agent, str(request.registry))	
 	return Response(response)
 
 class App(ServerBase):
