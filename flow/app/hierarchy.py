@@ -7,9 +7,7 @@ class Hierarchy():
 		self.store = NodeStore_File()
 
 	def get_node(self, uid):
-		print "Hierarchy.get_node '%s'" % uid
 		node = Node(self, uid)
-		print node
 		return(node)
 
 	def add_node(self, parent_uid, nodetype):
