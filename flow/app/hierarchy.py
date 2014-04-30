@@ -13,15 +13,15 @@ class Hierarchy():
 		return(node)
 
 	def add_node(self, uid, nodetype, parent_node = None, parent_uid = None, ):
-		data = {
-			"nodetype": nodetype, "parent_uid": parent_uid, "uid": uid
-		}
 		full_uid = None
 		if parent_node != None:
 			full_uid = "%s/%s" % (parent_node.uid, uid)
 		if parent_uid != None:
 			full_uid = "%s/%s" % (parent_uid, uid)
 
+		data = {
+			"nodetype": nodetype, "uid": full_uid
+		}
 		result = None
 		if full_uid != None:
 			self.store.add(full_uid, data)
