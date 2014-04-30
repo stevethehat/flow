@@ -11,8 +11,10 @@ class Node:
 
 	def children(self):
 		children = self.hierarchy.store.children(self.uid)
-		print "CHILDREN"
 		print children
+
+	def edit(self):
+		return("the result of the edit...")
 
 	def __repr__(self):
 		return(
