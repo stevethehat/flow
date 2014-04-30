@@ -8,6 +8,13 @@ class NodeStore_File():
 		self.env = env
 		self.root_path = os.path.join(env.config["approot"], "nodes")
 
+	def load_object(self, full_file_name):
+		self.env.log("load '%s'..." % full_file_name)
+		object_file = open(full_file_name, "r")
+		result = ast.literal_eval(object_file.read())
+		object_file.close()
+		return(result)
+
 	def get_node_directory_path(self, uid):
 		node_directory_path = self.root_path
 		for uid_bit in uid.split("/"):
@@ -21,9 +28,7 @@ class NodeStore_File():
 		result = None
 		full_file_name = self.get_node_data_path(uid)
 		if os.path.exists(full_file_name):
-			object_file = open(full_file_name, "r")
-			result = ast.literal_eval(object_file.read())
-			object_file.close()
+			self.load_object(full_file_name)
 		return(result)
 
 	def add(self, uid, data):
@@ -38,8 +43,6 @@ class NodeStore_File():
 		object_file.write(str(data))
 		object_file.close()
 
-
-
 	def update(self, uid, data):
 		pass
 
@@ -47,4 +50,16 @@ class NodeStore_File():
 		pass
 
 	def children(self, uid):
-		pass
+		node_directory_path = self.get_node_directory_path(uid)
+		print "get children of '%s'" % node_directory_path
+
+		results = []
+		for file_name in os.listdir(node_directory_path):
+			full_file_name = os.path.join(node_directory_path, file_name)
+
+			if os.path.isdir(full_file_name):
+				node = self.load_object(os.path.join(full_file_name, ".node"))
+				print node
+				results.append(node)
+
+		return(results)
