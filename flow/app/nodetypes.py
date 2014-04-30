@@ -102,9 +102,6 @@ class NodeTypes:
 		if os.path.exists(self.node_actions_filename):
 			os.remove(self.node_actions_filename)
 
-		self.definitions = {}
-		self.classes = []
-		self.actions = []
 		
 
 		print "\nbuild nodedefs"
