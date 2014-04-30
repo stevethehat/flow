@@ -4,9 +4,9 @@ class NodeStore_File():
 	"""
 	Basic NodeStore implementation based on filesystem.
 	"""
-	def __init__(self):
-		#self.root_path = "/Users/stevethehat/Development/flow/nodes"		
-		self.root_path = "C:\\Development\\Personal\\flow\\nodes"
+	def __init__(self, env):
+		self.env = env
+		self.root_path = os.path.join(env.config["approot"], "nodes")
 
 	def get_node_directory_path(self, uid):
 		node_directory_path = self.root_path
@@ -28,10 +28,12 @@ class NodeStore_File():
 
 	def add(self, uid, data):
 		node_directory_path = self.get_node_directory_path(uid)
+		print "add to '%s'" % node_directory_path
 		if not(os.path.exists(node_directory_path)):
 			os.makedirs(node_directory_path)
 
 		full_file_name = self.get_node_data_path(uid)
+		print "add '%s'" % full_file_name
 		object_file = open(full_file_name, "w")
 		object_file.write(str(data))
 		object_file.close()

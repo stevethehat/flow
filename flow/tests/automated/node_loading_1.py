@@ -1,8 +1,9 @@
 from flow.app.hierarchy import Hierarchy
 
-def test_1():
-	print "load hierarchy..."
-	h = Hierarchy()
+def test_1(flow):
 	print "load root node..."
-	r = h.get_node("/root")
-	print "root"
+	root = flow.hierarchy.get_node("root")
+	print root
+
+	admin = flow.hierarchy.add_node("admin", "admin", parent_node = root)
+	print admin
