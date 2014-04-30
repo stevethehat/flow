@@ -9,6 +9,21 @@ class Node:
 		else:
 			self.data = self.hierarchy.store.get(uid)
 
+	def update(self):
+		self.hierarchy.store.update(self.uid, self.data)
+
+	def add_child(self, nodetype, description):
+		
+		data = { "nodetype": nodetype, "description": description, "child_uids": []}
+		uid = self.hierarchy.store.add(data)
+
+		self.data["child_uids"].append(uid)
+		self.update()
+
+		print "child uids '%s'" % self.data["child_uids"]
+
+		return(self.hierarchy.get_node(uid))
+
 	def children(self):
 		children = self.hierarchy.store.children(self.uid)
 		print children
@@ -17,8 +32,4 @@ class Node:
 		return("the result of the edit...")
 
 	def __repr__(self):
-		return(
-			str(
-				{"uid": self.uid, "data": self.data}
-			)
-		)
+		return("\n%s" % {"uid": self.uid, "data": self.data})

@@ -1,6 +1,7 @@
-import os, ast
+import os, ast, shutil
+from flowbase import FlowBase
 
-class NodeStore_File():
+class NodeStore_File(FlowBase):
 	"""
 	Basic NodeStore implementation based on filesystem.
 	"""
@@ -8,17 +9,29 @@ class NodeStore_File():
 		self.env = env
 		self.root_path = os.path.join(env.config["approot"], "nodes")
 
-	def load_object(self, full_file_name):
-		self.env.log("load '%s'..." % full_file_name)
-		object_file = open(full_file_name, "r")
-		result = ast.literal_eval(object_file.read())
-		object_file.close()
-		return(result)
+	def get_uid(self):
+		uid_file_name = os.path.join(self.root_path, "uid")
+
+		new_uid = 1
+		if os.path.exists(uid_file_name):
+			uid_file = open(uid_file_name, "r")
+			new_uid = int(uid_file.read()) + 1
+			uid_file.close()
+			os.remove(uid_file_name)
+
+		uid_file = open(uid_file_name, "w")
+		uid_file.write(str(new_uid))
+		uid_file.close()
+
+		return(new_uid)
+
+	def init(self):
+		if os.path.exists(self.root_path):
+			shutil.rmtree(self.root_path)
+		os.makedirs(self.root_path)
 
 	def get_node_directory_path(self, uid):
-		node_directory_path = self.root_path
-		for uid_bit in uid.split("/"):
-			node_directory_path = os.path.join(node_directory_path, uid_bit)
+		node_directory_path = os.path.join(self.root_path, str(uid))
 		return(node_directory_path)
 
 	def get_node_data_path(self, uid):
@@ -28,23 +41,21 @@ class NodeStore_File():
 		result = None
 		full_file_name = self.get_node_data_path(uid)
 		if os.path.exists(full_file_name):
-			self.load_object(full_file_name)
+			result = self.load_object(full_file_name, None)
 		return(result)
 
-	def add(self, uid, data):
+	def add(self, data):
+		uid = uid = self.get_uid()
 		node_directory_path = self.get_node_directory_path(uid)
-		print "add to '%s'" % node_directory_path
 		if not(os.path.exists(node_directory_path)):
 			os.makedirs(node_directory_path)
 
-		full_file_name = self.get_node_data_path(uid)
-		print "add '%s'" % full_file_name
-		object_file = open(full_file_name, "w")
-		object_file.write(str(data))
-		object_file.close()
+		self.update(uid, data)
+		return(uid)
 
 	def update(self, uid, data):
-		pass
+		full_file_name = self.get_node_data_path(uid)
+		self.save_object(full_file_name, data)
 
 	def delete(self, uid):
 		pass
@@ -58,7 +69,7 @@ class NodeStore_File():
 			full_file_name = os.path.join(node_directory_path, file_name)
 
 			if os.path.isdir(full_file_name):
-				node = self.load_object(os.path.join(full_file_name, ".node"))
+				node = self.load_object(os.path.join(full_file_name, ".node"), None)
 				print node
 				results.append(node)
 

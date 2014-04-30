@@ -8,23 +8,17 @@ class Hierarchy():
 		env.log("init Hierarchy")
 		self.store = NodeStore_File(self.env)
 
+	def init(self):
+		self.store.init()
+		self.store.add({ "nodetype": "root", "description": "Flow Root", "child_uids": []})
+
 	def get_node(self, uid):
 		node = Node(self, uid)
 		return(node)
 
-	def add_node(self, uid, nodetype, parent_node = None, parent_uid = None, ):
-		full_uid = None
-		if parent_node != None:
-			full_uid = "%s/%s" % (parent_node.uid, uid)
-		if parent_uid != None:
-			full_uid = "%s/%s" % (parent_uid, uid)
+	def add_node(self, nodetype, description, parent_node = None, parent_uid = None, ):
+		if parent_node == None:
+			parent_node = self.get_node(parent_uid)
 
-		data = {
-			"nodetype": nodetype, "uid": full_uid
-		}
-		result = None
-		if full_uid != None:
-			self.store.add(full_uid, data)
-			result = self.get_node(full_uid)
-
+		result = parent_node.add_child(nodetype, description)
 		return(result)
