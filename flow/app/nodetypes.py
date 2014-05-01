@@ -1,5 +1,6 @@
 import os, ast, imp, sys, pprint, inspect
 from decorators import BaseDecorator
+from flowbase import FlowBase
 """
 nodetypes
 """
@@ -7,7 +8,7 @@ nodetypes
 sys.path.append("/Users/stevethehat/Development/flow")
 
 
-class NodeTypes:
+class NodeTypes(FlowBase):
 	def __init__(self, root_path):
 		print "init NodeTypes..."
 		self.root_path = root_path
@@ -24,9 +25,9 @@ class NodeTypes:
 		self.load()
 
 	def load(self):
-		self.definitions = load_ast(self.node_definitions_filename, {})
-		self.classes = load_ast(self.node_classes_filename, [])
-		self.actions = load_ast(self.node_actions_filename, [])
+		self.definitions = self.load_object(self.node_definitions_filename, {})
+		self.classes = self.load_object(self.node_classes_filename, [])
+		self.actions = self.load_object(self.node_actions_filename, [])
 
 	def nodedefinition_processor(self, file_name):
 		print "nodedefinition_processor %s" % file_name
@@ -97,9 +98,9 @@ class NodeTypes:
 
 		self.process_definitions()
 
-		save_ast(self.node_definitions_filename, self.definitions)
-		save_ast(self.node_classes_filename, self.classes)
-		save_ast(self.node_actions_filename, self.actions)
+		self.save_object(self.node_definitions_filename, self.definitions)
+		self.save_object(self.node_classes_filename, self.classes)
+		self.save_object(self.node_actions_filename, self.actions)
 		self.load()
 
 	def walk_directory(self, path, file_type, processor):
