@@ -6,9 +6,16 @@ def test_1(flow):
 	
 	print "load root node..."
 	root = flow.hierarchy.get_node(1)
-	admin = flow.hierarchy.add_node("admin", "Administration", parent_node = root)
+	print "add admin node..."
+	print ""
 
-	print root
-	print admin
+	admin = flow.hierarchy.add_node("admin", "Administration", parent_node = root)
+	websites = flow.hierarchy.add_node("websites", "Websites", parent_node = root)
+	website = flow.hierarchy.add_node("website", "Steves Website", parent_node = websites)
+
+	print "root = '%s'\n" % root
+	print "admin = '%s'\n" % admin
+	print "websites = '%s'\n" % websites
 
 	children = root.children()
+	print "children = '%s'\n" % children
