@@ -1,11 +1,12 @@
 import os
 from nodestore_file import NodeStore_File
 from node import Node
+from flowbase import FlowBase
 
-class Hierarchy():
-	def __init__(self, env):
-		self.env = env
-		env.log("init Hierarchy")
+class Hierarchy(FlowBase):
+	def __init__(self, flow):
+		super(Hierarchy, self).__init__(flow);
+		self.env.log("init Hierarchy")
 		self.store = NodeStore_File(self.env)
 
 	def init(self):

@@ -9,9 +9,10 @@ sys.path.append("/Users/stevethehat/Development/flow")
 
 
 class Nodetypes(FlowBase):
-	def __init__(self, env):
+	def __init__(self, flow):
+		super(Nodetypes, self).__init__(flow)
 		print "init NodeTypes..."
-		self.root_path = os.path.join(env.config["approot"], "nodes")
+		self.root_path = os.path.join(self.env.config["approot"], "nodes")
 		self.node_definitions_filename = os.path.join(self.root_path, "nodedefinitions")
 		self.node_classes_filename = os.path.join(self.root_path, "nodeclasses")
 		self.node_actions_filename = os.path.join(self.root_path, "nodeactions")

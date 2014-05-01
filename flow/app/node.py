@@ -1,8 +1,10 @@
 from nodestore_file import NodeStore_File
+from flowbase import FlowBase
 
-class Node:
-	def __init__(self, hierarchy, uid, data = None):
-		self.hierarchy = hierarchy
+class Node(FlowBase):
+	def __init__(self, flow, uid, data = None):
+		super(Node, self).__init__(flow)
+		self.hierarchy = self.flow.hierarchy
 		self.uid = uid
 		if data != None:
 			self.data = data
