@@ -14,7 +14,7 @@ class Hierarchy(FlowBase):
 		self.store.add({ "nodetype": "root", "description": "Flow Root", "child_uids": []})
 
 	def get_node(self, uid):
-		node = Node(self, uid)
+		node = Node(self.flow, uid)
 		return(node)
 
 	def add_node(self, nodetype, description, parent_node = None, parent_uid = None):
