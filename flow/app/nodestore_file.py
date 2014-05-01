@@ -23,7 +23,7 @@ class NodeStore_File(FlowBase):
 		uid_file.write(str(new_uid))
 		uid_file.close()
 
-		return(new_uid)
+		return(str(new_uid))
 
 	def init(self):
 		if os.path.exists(self.root_path):
@@ -61,16 +61,13 @@ class NodeStore_File(FlowBase):
 		pass
 
 	def children(self, uid):
-		node_directory_path = self.get_node_directory_path(uid)
-		print "get children of '%s'" % node_directory_path
-
+		print "load children of '%s'" % uid
+		node = self.load_object(str(uid), None)
+		print "node = %s" % node
+		print "children = %s" % node["child_uids"] 
 		results = []
-		for file_name in os.listdir(node_directory_path):
-			full_file_name = os.path.join(node_directory_path, file_name)
-
-			if os.path.isdir(full_file_name):
-				node = self.load_object(os.path.join(full_file_name, ".node"), None)
-				print node
-				results.append(node)
-
+		if node != None:
+			for child_node_uid in node["child_uids"]: 
+				print "add child"
+				results.append(self.load_object(child_node_uid, None))
 		return(results)

@@ -16,7 +16,7 @@ class Hierarchy():
 		node = Node(self, uid)
 		return(node)
 
-	def add_node(self, nodetype, description, parent_node = None, parent_uid = None, ):
+	def add_node(self, nodetype, description, parent_node = None, parent_uid = None):
 		if parent_node == None:
 			parent_node = self.get_node(parent_uid)
 

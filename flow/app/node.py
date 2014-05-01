@@ -25,7 +25,10 @@ class Node:
 		return(self.hierarchy.get_node(uid))
 
 	def children(self):
-		children = self.hierarchy.store.children(self.uid)
+		children = []
+		for child_node_uid in self.data["child_uids"]:
+			print "load %s " % child_node_uid
+			children.append(self.hierarchy.get_node(child_node_uid))
 		print children
 
 	def edit(self):
