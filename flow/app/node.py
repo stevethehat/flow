@@ -14,22 +14,19 @@ class Node:
 
 	def add_child(self, nodetype, description):
 		
-		data = { "nodetype": nodetype, "description": description, "child_uids": []}
+		data = { "parent_uid": self.uid, "nodetype": nodetype, "description": description, "child_uids": []}
 		uid = self.hierarchy.store.add(data)
 
 		self.data["child_uids"].append(uid)
 		self.update()
-
-		print "child uids '%s'" % self.data["child_uids"]
 
 		return(self.hierarchy.get_node(uid))
 
 	def children(self):
 		children = []
 		for child_node_uid in self.data["child_uids"]:
-			print "load %s " % child_node_uid
 			children.append(self.hierarchy.get_node(child_node_uid))
-		print children
+		return(children)
 
 	def edit(self):
 		return("the result of the edit...")
