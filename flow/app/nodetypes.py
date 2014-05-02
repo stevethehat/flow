@@ -11,8 +11,7 @@ sys.path.append("/Users/stevethehat/Development/flow")
 class Nodetypes(FlowBase):
 	def __init__(self, flow):
 		super(Nodetypes, self).__init__(flow)
-		print "init NodeTypes..."
-		self.root_path = os.path.join(self.env.config["approot"], "nodes")
+		self.root_path = os.path.join(self.env.config["approot"], "modules")
 		self.node_definitions_filename = os.path.join(self.root_path, "nodedefinitions")
 		self.node_classes_filename = os.path.join(self.root_path, "nodeclasses")
 		self.node_actions_filename = os.path.join(self.root_path, "nodeactions")
@@ -105,6 +104,7 @@ class Nodetypes(FlowBase):
 		self.load()
 
 	def walk_directory(self, path, file_type, processor):
+		print "walking node dir '%s'" % path
 		ext = file_type[:len(file_type)]
 
 		for file_name in os.listdir(path):
