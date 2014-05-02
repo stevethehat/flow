@@ -19,3 +19,8 @@ def test_1(flow):
 
 	children = root.children()
 	print "children = '%s'\n" % children
+
+	print flow.nodetypes.definitions
+	print ""
+	print admin.definition
+	print admin.definition
