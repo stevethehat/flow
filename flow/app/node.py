@@ -16,7 +16,6 @@ class Node(FlowBase):
 
 	@cacheprop
 	def definition(self):
-		print "loading nodetype"
 		return(self.flow.nodetypes.definitions[self.nodetype])
 
 	def edit(self):
@@ -31,7 +30,6 @@ class Node(FlowBase):
 
 		self.data["child_uids"].append(uid)
 		self.update()
-
 		return(self.hierarchy.get_node(uid))
 
 	def children(self):
