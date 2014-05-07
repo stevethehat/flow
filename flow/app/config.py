@@ -1,11 +1,15 @@
+import os
 from pyramid.response import Response
 import admin_handler
 
+root_path = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir))
+
 # example config
 static_paths = [
-	{ "url_prefix": "js", "local_path": "C:\\Development\\Personal\\flow\\static\\app\\js" },
-	{ "url_prefix": "css", "local_path": "C:\\Development\\Personal\\flow\\static\\app\\css" },
-	{ "url_prefix": "html", "local_path": "C:\\Development\\Personal\\flow\\static\\app\\html" },
+	{ "url_prefix": "js", "local_path": os.path.join(root_path, "static", "app", "js") },
+	{ "url_prefix": "css", "local_path": os.path.join(root_path, "static", "app", "css") },
+	{ "url_prefix": "html", "local_path": os.path.join(root_path, "static", "app", "html") },	
+	{ "url_prefix": "assets", "local_path": os.path.join(root_path, "static", "app", "assets") },
 ]
 
 def test_dynamic_handler(request):
