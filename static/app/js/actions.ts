@@ -5,6 +5,7 @@ module Actions {
 
     export interface ActionElement {
         label: string;
+        action: string;
         icon?: string;
     }
 
