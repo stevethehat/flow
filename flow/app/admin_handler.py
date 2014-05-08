@@ -3,9 +3,7 @@ from flow import Flow
 
 def admin_handler(request):
 	flow = Flow(
-		{
-			"approot": "C:\\Development\\Personal\\flow"
-		}
+		{ "approot": "C:\\Development\\Personal\\flow" }
 	)
 	uid = "/".join(request.subpath)
 	action = request.matchdict["action"]
@@ -13,7 +11,7 @@ def admin_handler(request):
 
 	print node
 
-	action_response = getattr(node, action, ["1234", "11"])()
+	action_response = getattr(node, action, [])()
 	response = """
 		<h1>node test response</h1>
 		<p>uid = '%s'</p>
