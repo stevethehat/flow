@@ -12,22 +12,16 @@ module Server{
 		private _baseUrl: string;
 
 		get(uid: string, action: string, data: any, callback: any): void{
+			var url: string = '/' + this._baseUrl + '/' + uid + '/' + action;
 			var ajaxParameters = {
-				url: '/' + this._baseUrl + '/' + uid + '/' + action,
+				url: url,
 				success: function (data) {
-					alert(data);
+					callback(data);
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
-					//console.log('Bridge.error');
-					//console.log('Response Text: ' + XMLHttpRequest.responseText);
-					//Util.serverError(XMLHttpRequest.responseText);
-					//console.log('Text Status: ' + textStatus);
-					//console.log('Error Thrown: ' + errorThrown);
-					//self.processQueue();
-					alert('error');
+					alert('Error (' + url + ') ' + XMLHttpRequest.responseText + ' ' + textStatus + ' ' + errorThrown);
 				}
 			}
-
 			$.ajax(ajaxParameters);
 		}	
 	}
