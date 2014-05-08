@@ -8,27 +8,16 @@ module Workspace{
             this.body = $('body');
 
             var mainMenu: Menus.BarMenu = new Menus.BarMenu($('#mainMenu'));
-            mainMenu.populate(
-                [
-                    {label: 'menu item1', 'action': ''},
-                    {label: 'hgjgjghjgjgj', 'action': '', icon: 'hello'},
-                    {label: 'sadadssa', 'action': ''}
-                ]
-            );
+
             this.server = new Server.Server("localhost", "html");
-            this.server.get("1", "list", null, 
+            this.server.get("1", "workspacemenu", null, 
                 function(data){
-                    alert(data);
+                    mainMenu.populate(<Actions.ActionElements>data);
                 }
             );
-
-            alert('done init');
         }
         body: JQuery;
         server: Server.Server;
-        test() {
-            return ('hello from test');
-        }
     }
 
     $(document).ready(
