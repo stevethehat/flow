@@ -74,8 +74,6 @@ class Nodetypes(FlowBase):
 			definition = self.definitions[name]
 			process_parent_nodes(definition)
 
-		pass
-
 	def rebuild(self):
 		print "rebuild nodetypes..."
 
@@ -87,8 +85,6 @@ class Nodetypes(FlowBase):
 
 		if os.path.exists(self.node_actions_filename):
 			os.remove(self.node_actions_filename)
-
-		
 
 		print "\nbuild nodedefs"
 		self.walk_directories(".nodedef", self.nodedefinition_processor)
