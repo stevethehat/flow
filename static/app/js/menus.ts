@@ -19,7 +19,7 @@ module Menus{
         }
 
         populate(elements: Actions.ActionElements): void{
-			alert("populate");
+			alert('populate' + elements);
         }
 
         private addElement(): void {
