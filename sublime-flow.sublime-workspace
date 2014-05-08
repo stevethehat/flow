@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"pa",
+				"parent_uid"
+			],
+			[
+				"full_",
+				"full_uid"
+			],
+			[
+				"node",
+				"node_directory_path"
+			],
+			[
+				"get",
+				"get_node_directory_path"
+			],
+			[
 				"sta",
 				"static_path"
 			],
@@ -52,10 +68,6 @@
 				"print_issue_info"
 			],
 			[
-				"get",
-				"get_git_process_output"
-			],
-			[
 				"get_data",
 				"get_database"
 			],
@@ -70,10 +82,6 @@
 			[
 				"loc",
 				"local_file"
-			],
-			[
-				"pa",
-				"paramiko"
 			],
 			[
 				"app",
@@ -166,10 +174,6 @@
 			[
 				"his",
 				"history"
-			],
-			[
-				"node",
-				"node_data"
 			],
 			[
 				"pu",
@@ -510,45 +514,25 @@
 			[
 				"fiel",
 				"fieldValue"
-			],
-			[
-				"inp",
-				"inputElement"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "static/app/js/workspace.ts",
+			"file": "flow/app/admin_handler.py",
 			"settings":
 			{
-				"buffer_size": 280,
+				"buffer_size": 506,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "static/app/js/menus.ts",
+			"file": "flow/app/node.py",
 			"settings":
 			{
-				"buffer_size": 93,
+				"buffer_size": 964,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "static/app/js/test.js",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "static/app/js/jquery.d.ts",
-			"settings":
-			{
-				"buffer_size": 187910,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -673,13 +657,35 @@
 	"file_history":
 	[
 		"/C/Development/Personal/flow/flow/app/config.py",
-		"/C/Development/Personal/flow/flow/app/server.py",
+		"/C/Development/Personal/flow/flow/server.py",
+		"/C/Development/Personal/flow/flow/__init__.py",
+		"/C/Development/Personal/flow/flow/server_base.py",
+		"/C/Development/Personal/flow/app.py",
 		"/C/Development/Personal/flow/flow/util/server_base.py",
-		"/C/Development/Personal/flow/static/app/html/workspace.htm",
+		"/C/Development/Personal/flow/flow/app/server.py",
+		"/C/Development/Personal/flow/flow/tests/automated/node_loading_1.py",
+		"/C/Development/Personal/flow/tests.py",
+		"/C/Development/Personal/flow/flow/app/nodetypes.py",
 		"/C/Development/Personal/flow/web.py",
+		"/C/Development/Personal/flow/flow/app/nodestore_file.py",
+		"/C/Development/Personal/flow/flow/app/node.py",
+		"/C/Development/Personal/flow/flow/app/env.py",
+		"/C/Development/Personal/flow/flow/app/flow.py",
+		"/C/Development/Personal/flow/flow/app/hierarchy.py",
+		"/C/Development/Personal/flow/flow/app/store.py",
+		"/C/Development/Personal/flow/nodes/root/.node",
+		"/C/Development/Personal/flow/static/app/js/menus.ts",
+		"/C/Development/Personal/flow/static/app/js/workspace.ts",
+		"/C/Development/Personal/flow/static/app/html/workspace.htm",
+		"/C/Development/Personal/flow/flow/tests/decorators.py",
+		"/C/Development/Personal/flow/modules/web/page/page.py",
+		"/C/Development/Personal/flow/flow/tests/asttest.py",
+		"/C/Development/Personal/flow/static/app/js/buildjs.bat",
+		"/C/Development/Personal/flow/static/app/js/actions.ts",
+		"/C/Development/Personal/flow/static/app/js/jquery.d.ts",
+		"/C/Development/Personal/flow/static/app/js/test.js",
 		"/C/Development/Personal/flow/flow/web/server.py",
 		"/C/Development/Personal/flow/flow/web/config.py",
-		"/C/Development/Personal/flow/app.py",
 		"/C/Development/Personal/flow/flow/web/site.py",
 		"/C/Development/Personal/flow/flow/web/page.py",
 		"/C/Development/Personal/flow/modules/test_module.py",
@@ -777,29 +783,7 @@
 		"/C/Development/Clients/LV/www.lv.com/c5/deploy/gittools.py",
 		"/C/Development/Clients/LV/www.lv.com/installation/.git/hooks/commit-msg",
 		"/C/Development/Clients/LV/www.lv.com/installation/.git/hooks/init_commit_msg.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/nodetypes/web/page/contentediting.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/css-src/partials/elements/_a.scss",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/nodetypes/system/branches/publishing.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/nodetypes/system/branches/branch/branch.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/css-src/partials/modules/_carousel-v2.scss",
-		"/C/Development/Clients/LV/www.lv.com/c5/.git/hooks/commit-msg",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/scripts/deploy-config.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/scripts/c4-url-listing.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/deploy/git.bat",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/init_continuity.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/nodetypes/__init__.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/scripts/user_management_test.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/js/contentelements/carousel-v3.js",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/scripts/seo_setup.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/xsl/pagetemplates/dataviews/hub-automation.xsl",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/brands/lv/css-src/partials/modules/_hub.scss",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/scripts/add_britannia_content.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/scripts/asset-link-fix.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/scripts/hub-articles/importHubArticles.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/deploy/admin-setup.bat",
-		"/C/Development/Clients/LV/www.lv.com/c5/deploy/frontend-setup.bat",
-		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/installation/processors/moxie/results.py",
-		"/C/Development/Clients/LV/www.lv.com/c5/HtmlDiff/file2.htm"
+		"/C/Development/Clients/LV/www.lv.com/c5/Sites/continuity/core/nodetypes/web/page/contentediting.py"
 	],
 	"find":
 	{
@@ -807,9 +791,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"C:\\Development\\Clients\\Personal\\flow",
 			"C:\\Development\\Clients\\LV\\gi.www.lv.com\\c5\\Sites\\continuity\\installation\\brands\\lv\\xsl",
 			"C:\\Development\\Clients\\LV\\gi.www.lv.com\\c5\\Sites\\continuity\\installation\\brands\\lv\\js",
 			"C:\\Development\\Clients\\LV\\gi.www.lv.com\\c5\\Sites\\continuity\\installation",
@@ -925,6 +910,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Test",
 			"\\\"",
 			"cookie",
 			"SIT",
@@ -1051,8 +1037,7 @@
 			"gi-staging",
 			"search_summary",
 			"Search Index Failure on",
-			"search_summary",
-			"test"
+			"search_summary"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1153,28 +1138,28 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "static/app/js/workspace.ts",
+					"file": "flow/app/admin_handler.py",
 					"settings":
 					{
-						"buffer_size": 280,
+						"buffer_size": 506,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								414,
+								414
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1184,82 +1169,27 @@
 				},
 				{
 					"buffer": 1,
-					"file": "static/app/js/menus.ts",
+					"file": "flow/app/node.py",
 					"settings":
 					{
-						"buffer_size": 93,
+						"buffer_size": 964,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								150,
+								150
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "static/app/js/test.js",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "static/app/js/jquery.d.ts",
-					"settings":
-					{
-						"buffer_size": 187910,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								52794,
-								52794
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 20434.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
