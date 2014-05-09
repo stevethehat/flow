@@ -19,69 +19,139 @@
 		<![endif]-->
 
 		<style type="text/css">
-		.btn-toolbar{
-			background-color:#333333;
-		}
-		.btn-padding{
-			padding: 4px 10px 4px 10px;
-		}
-		.navbar-fixed-bottom .btn-padding{
-			color:white;
-		}
+			.btn-toolbar{
+				background-color:#333333;
+			}
+			.btn-padding{
+				padding: 4px 10px 4px 10px;
+			}
+			.navbar-fixed-bottom .btn-padding{
+				color:white;
+			}
 
-		ul .fa{
-			color:#bbbbbb;
-		}
+			ul .fa{
+				color:#bbbbbb;
+			}
+
+			.menu-arrow {
+				margin-left: 10px;
+				width: 0; 
+				height: 0; 
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+				
+				border-bottom: 15px solid black;
+				opacity: 0.7;
+			}		
+
+			#popup{
+				position:fixed;
+				top: 32px;
+				left: 10px;
+				right: 10px;
+				margin-top: 10px;
+
+				display: none;
+			}
+
+			#popup-background{
+				color: white;
+				/*font-weight: bold;*/
+				top: 10px;
+				left: 10px;
+				bottom: 40px;
+				right: 10px;
+
+				background-color: #000000;
+				opacity: 0.7;
+
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;		
+
+				padding: 10px;		
+			}
+
+			.main-content{
+				padding-top: 40px;				
+				padding-bottom: 40px;
+			}
+
+			#form{
+				display:none;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="btn-toolbar navbar-fixed-top" role="toolbar">
 			<div class="btn-padding">
-				<button type="button" class="btn btn-default"><i class="fa fa-home fa-lg"></i></button>
-				<button type="button" class="btn btn-default pull-right"><i class="fa fa-cog fa-lg"></i></button>
+				<button id="home" type="button" class="btn btn-default"><i class="fa fa-home fa-lg"></i></button>
+				<button id="actions" type="button" class="btn btn-default pull-right"><i class="fa fa-cog fa-lg"></i></button>
 			</div>
 		</div>
 
-		<ul class="list-group">
-			<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
-			<li class="list-group-item">Dapibus ac facilisis in</li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
-			<li class="list-group-item">Cras justo odio</li>
-			<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg" style="color:green"></i></span></li>
-			<li class="list-group-item">Dapibus ac facilisis in</li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
-			<li class="list-group-item">Cras justo odio</li>
-			<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
-			<li class="list-group-item">Dapibus ac facilisis in</li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
-			<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
-			<li class="list-group-item">Cras justo odio</li>
-			<li class="list-group-item">Dapibus ac facilisis in</li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
-			<li class="list-group-item">Cras justo odio</li>
-			<li class="list-group-item">Dapibus ac facilisis in</li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
-			<li class="list-group-item">Cras justo odio</li>
-			<li class="list-group-item">Dapibus ac facilisis in</li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
-			<li class="list-group-item">Cras justo odio</li>
-			<li class="list-group-item">Dapibus ac facilisis in</li>
-			<li class="list-group-item">Morbi leo risus</li>
-			<li class="list-group-item">Porta ac consectetur ac</li>
-			<li class="list-group-item">Vestibulum at eros</li>
-		</ul>
+		<div id="listing1" class="main-content">
+			<ul class="list-group">
+				<li class="list-group-item">TOP!! Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg" style="color:green"></i></span></li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+				<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">BOTTOM!! Vestibulum at eros</li>
+			</ul>
+		</div>
+
+		<div id="form" class="main-content">
+			<form>
+				<div class="input-group">
+					<span class="input-group-addon">@</span>
+  					<input type="text" class="form-control" placeholder="Username">
+				</div>
+
+				<div class="input-group">
+  					<input type="text" class="form-control">
+  					<span class="input-group-addon">.00</span>
+				</div>
+
+				<div class="input-group">
+  					<span class="input-group-addon">$</span>
+  					<input type="text" class="form-control">
+  					<span class="input-group-addon">.00</span>
+				</div>
+			</form>
+		</div>
 
 		<div class="btn-toolbar navbar-fixed-bottom" role="toolbar">
 			<div class="btn-padding">
@@ -89,10 +159,39 @@
 			</div>
 		</div>
 
+		<div id="popup">
+			<div>
+				<div class="menu-arrow"></div>
+			</div>
+			<div id="popup-background">
+				<p>
+					a popup
+				</p>
+			</div>
+		</div>
+
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="/js/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/flowapp.js"></script>
+		<!--<script src="/js/flowapp.js"></script>-->
+
+		<script type="text/javascript">
+			$(document).ready(
+				function(){
+					$('#home').click(
+						function(){
+							$('#popup').toggle();
+						}
+					);
+					$('#actions').click(
+						function(){
+							$('#form').toggle();
+							$('#listing1').toggle();
+						}
+					);
+				}
+			);
+		</script>
 	</body>
 </html>
