@@ -9,6 +9,7 @@ static_paths = [
 	{ "url_prefix": "js", "local_path": os.path.join(root_path, "static", "app", "js") },
 	{ "url_prefix": "css", "local_path": os.path.join(root_path, "static", "app", "css") },
 	{ "url_prefix": "html", "local_path": os.path.join(root_path, "static", "app", "html") },	
+	{ "url_prefix": "fonts", "local_path": os.path.join(root_path, "static", "app", "fonts") },	
 	{ "url_prefix": "assets", "local_path": os.path.join(root_path, "static", "app", "assets") },
 ]
 
