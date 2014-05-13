@@ -84,6 +84,22 @@
 			#form{
 				display:none;
 			}
+
+			.list-group-item img {
+				margin-right: 6px;
+			}
+
+			.breadcrumb, .breadcrumb:hover, .dropdown-menu.breadcrumb li a, .dropdown-menu.breadcrumb li a:hover, .breadcrumb.dropdown-toggle.btn-default {
+				background-color: #333333;
+				color: white;
+				margin: 2px 0px 0px 10px;
+				border-color: #444444;
+			}
+
+			.dropdown-menu.breadcrumb li a{
+				color:#eeeeee;
+
+			}
 		</style>
 	</head>
 	<body>
@@ -95,6 +111,15 @@
 					-->
 					<img src="/assets/icons/32x32/house.png"/>
 				</button>
+
+
+				<!-- Single button -->
+				<button type="button" class="btn btn-default dropdown-toggle breadcrumb" data-toggle="dropdown">
+					Flow <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu breadcrumb" role="menu">
+					<li><a href="#">Admin</a></li>
+				</ul>
 				<button id="actions" type="button" class="btn btn-default pull-right">
 					<!--
 					<i class="fa fa-cog fa-lg"></i>
