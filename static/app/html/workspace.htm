@@ -19,99 +19,18 @@
 		<![endif]-->
 
 		<style type="text/css">
-			.btn-toolbar{
-				background-color:#333333;
-			}
-			.btn-padding{
-				padding: 4px 10px 4px 10px;
-			}
-
-			.btn-padding .btn{
-				padding:4px;				
-			}
-			.navbar-fixed-bottom .btn-padding{
-				color:white;
-			}
-
-			ul .fa{
-				color:#bbbbbb;
-			}
-
-			.menu-arrow {
-				margin-left: 10px;
-				width: 0; 
-				height: 0; 
-				border-left: 10px solid transparent;
-				border-right: 10px solid transparent;
-				
-				border-bottom: 15px solid black;
-				opacity: 0.7;
-			}		
-
-			#popup{
-				position:fixed;
-				top: 32px;
-				left: 10px;
-				right: 10px;
-				margin-top: 10px;
-
-				display: none;
-			}
-
-			#popup-background{
-				color: white;
-				/*font-weight: bold;*/
-				top: 10px;
-				left: 10px;
-				bottom: 40px;
-				right: 10px;
-
-				background-color: #000000;
-				opacity: 0.7;
-
-				-webkit-border-radius: 5px;
-				-moz-border-radius: 5px;
-				border-radius: 5px;		
-
-				padding: 10px;		
-			}
-
-			.main-content{
-				padding-top: 50px;				
-				padding-bottom: 40px;
-			}
-
-			#form{
-				display:none;
-			}
-
-			.list-group-item img {
-				margin-right: 6px;
-			}
-
-			.breadcrumb, .breadcrumb:hover, .dropdown-menu.breadcrumb li a, .dropdown-menu.breadcrumb li a:hover, .breadcrumb.dropdown-toggle.btn-default {
-				background-color: #333333;
-				color: white;
-				margin: 2px 0px 0px 10px;
-				border-color: #444444;
-			}
-
-			.dropdown-menu.breadcrumb li a{
-				color:#eeeeee;
-
-			}
+		.list-nav{
+			width:60px;
+			cursor: pointer;
+		}
 		</style>
 	</head>
 	<body>
 		<div class="btn-toolbar navbar-fixed-top" role="toolbar">
 			<div class="btn-padding">
 				<button id="home" type="button" class="btn btn-default">
-					<!--
-					<i class="fa fa-home fa-lg"></i>
-					-->
 					<img src="/assets/icons/32x32/house.png"/>
 				</button>
-
 
 				<!-- Single button -->
 				<button type="button" class="btn btn-default dropdown-toggle breadcrumb" data-toggle="dropdown">
@@ -130,46 +49,6 @@
 		</div>
 
 		<div id="listing1" class="main-content">
-			<ul class="list-group">
-				<li class="list-group-item">TOP!! Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
-				<li class="list-group-item"><img src="/assets/icons/32x32/book_spelling.png"/>Dapibus ac facilisis in</li>
-				<li class="list-group-item">Morbi leo risus</li>
-				<li class="list-group-item">Porta ac consectetur ac</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg" style="color:green"></i></span></li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Morbi leo risus</li>
-				<li class="list-group-item">Porta ac consectetur ac</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-x4"></i></span></li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Morbi leo risus</li>
-				<li class="list-group-item">Porta ac consectetur ac</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-				<li class="list-group-item">Cras justo odio <span class="pull-right"><i class="fa fa-chevron-circle-right fa-lg"></i></span></li>
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Morbi leo risus</li>
-				<li class="list-group-item">Porta ac consectetur ac</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Morbi leo risus</li>
-				<li class="list-group-item">Porta ac consectetur ac</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Morbi leo risus</li>
-				<li class="list-group-item">Porta ac consectetur ac</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Morbi leo risus</li>
-				<li class="list-group-item">Porta ac consectetur ac</li>
-				<li class="list-group-item">BOTTOM!! Vestibulum at eros</li>
-			</ul>
 		</div>
 
 		<div id="form" class="main-content">
@@ -213,7 +92,7 @@
 		<script src="/js/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="/js/bootstrap.min.js"></script>
-		<!--<script src="/js/flowapp.js"></script>-->
+		<script src="/js/flowapp.js"></script>
 
 		<script type="text/javascript">
 			$(document).ready(
