@@ -38,6 +38,12 @@ module Listings{
 				var description: JQuery = $('<span/>')
 					.text(item.description)
 					.appendTo(li);
+				var navigate: JQuery = $('<span/>')
+					.addClass('pull-right list-nav')
+					.appendTo(li);
+				var navigateIcon: JQuery = $('<i/>').
+					addClass('fa fa-chevron-circle-right fa-lg pull-right')
+					.appendTo(navigate);
 			}
 		}
 	}
