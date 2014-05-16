@@ -8,14 +8,21 @@ module Menus{
     
     export class BarMenu{
         private _container: JQuery;
-        constructor(container: JQuery) {
+        private _containerFluid: JQuery;
+        private _workspace: Workspace.Workspace;
+        constructor(workspace: Workspace.Workspace, container: JQuery) {
+            this._workspace = workspace;
             this._container = container;
             this._container
                 .attr('role', 'navigation')
                 .addClass('navbar navbar-default');
 
-            this._container.append('div')
+            this._containerFluid = this._container.append('div')
                 .addClass('container-fluid');
+
+            this._containerFluid.append("button")
+                .attr('type', 'button');
+
         }
 
         populate(elements: Actions.ActionElements): void{
