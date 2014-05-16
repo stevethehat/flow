@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-tsc --out flowapp.js workspace.ts menus.ts dialogs.ts server.ts
+tsc --out flowapp.js workspace.ts menus.ts dialogs.ts server.ts listings.ts
 
 echo
 echo Done..
