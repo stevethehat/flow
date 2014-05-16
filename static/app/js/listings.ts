@@ -60,9 +60,11 @@ module Listings{
 				var icon: JQuery = $('<img/>')
 					.attr('src', iconUrl)
 					.appendTo(li);
+
 				var description: JQuery = $('<span/>')
 					.text(item.description)
 					.appendTo(li);
+
 				var navigate: JQuery = $('<span/>')
 					.addClass('pull-right list-nav')
 					.appendTo(li);
@@ -75,6 +77,7 @@ module Listings{
 						}
 					);
 				}
+				
 				var navigateIcon: JQuery = $('<i/>').
 					addClass('fa fa-chevron-circle-right fa-lg pull-right')
 					.appendTo(navigate);
