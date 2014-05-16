@@ -32,9 +32,17 @@ module Workspace{
                 {
                     parentUid: '1',
                     items:[
-                        { description: 'hello1', uid: '2'},
-                        { description: 'hello2', uid: '3'},
+                        { description: 'hello1', uid: '2', icon: 'beer'},
+                        { description: 'hello2', uid: '3', icon: 'bell'},
                     ]
+                },
+                function(uid: string, item: JQuery){
+                    alert('select');
+                    this.listview.setSelected(item);
+                    alert('after call');
+                },
+                function(){ 
+                    alert('navigate');
                 }
             );
         }
@@ -50,6 +58,7 @@ module Workspace{
         listview: Listings.ListView;
         width: number;
         height: number;
+        iconPath: string = '/assets/icons';
     }
 
     $(document).ready(
