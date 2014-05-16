@@ -4,6 +4,7 @@ module Actions {
     }
 
     export interface ActionElement {
+        uid: string;
         label: string;
         action: string;
         icon?: string;
