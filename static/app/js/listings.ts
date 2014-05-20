@@ -34,7 +34,7 @@ module Listings{
 
 		populate(list: List, selectEvent?: ListSelect, navigateEvent?: ListNavigate){
 			this._container.empty();
-			var ul: JQuery = $('<ul/>').addClass('list-group').appendTo(this._container);
+			var ul:JQuery = $('<ul/>').addClass('list-group').appendTo(this._container);
 			for(var id in list.items){
 				var item: ListItem = list.items[id];
 				var li: JQuery = $('<li/>')
@@ -45,6 +45,8 @@ module Listings{
 					li.click(
 						function(event){
 							event.stopPropagation();
+							ul.find('li').removeClass('selected');
+							li.addClass('selected');
 							selectEvent(item.uid, li);
 						}
 					);
@@ -77,14 +79,11 @@ module Listings{
 						}
 					);
 				}
-				
+
 				var navigateIcon: JQuery = $('<i/>').
 					addClass('fa fa-chevron-circle-right fa-lg pull-right')
 					.appendTo(navigate);
 			}
-		}
-		setSelected(li: JQuery){
-			alert('set selected');
 		}
 	}
 }
