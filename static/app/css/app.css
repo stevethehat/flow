@@ -86,6 +86,10 @@ ul .fa{
 	margin-right: 6px;
 }
 
+.list-group-item.selected{
+	background-color: red;
+}
+
 .breadcrumb, .breadcrumb:hover, .dropdown-menu.breadcrumb li a, .dropdown-menu.breadcrumb li a:hover, .breadcrumb.dropdown-toggle.btn-default {
 	background-color: #333333;
 	color: white;
