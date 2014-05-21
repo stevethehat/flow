@@ -6,12 +6,24 @@ module Workspace{
     export class Workspace {
         constructor() {
             this.body = $('body');
-            this.header = $('#header');
-            this.contentArea = $('#listing1');
+            var self: Workspace = this;
+
             if (typeof window.innerWidth != 'undefined') {
                 this.width = window.innerWidth,
                 this.height = window.innerHeight
-            }            
+            }       
+
+            this.template = new Templates.Template(this);  
+            this.template.initialize('').done(
+                function(){
+                    self.initialize();
+                } 
+            );
+        }
+        initialize(){
+            this.header = $('#header');
+            this.contentArea = $('#listing1');
+
             this.contentArea.height(this.height - this.header.height() -60);
             this.listview = new Listings.ListView(this, this.contentArea);
 
@@ -22,7 +34,7 @@ module Workspace{
                 }
             );
 
-            this.navigate('1');
+            this.navigate('1');            
         }
         log(): void{
             alert('in log');
@@ -59,6 +71,7 @@ module Workspace{
         width: number;
         height: number;
         iconPath: string = '/assets/icons';
+        template: Templates.Template;
     }
 
     $(document).ready(

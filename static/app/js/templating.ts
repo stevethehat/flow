@@ -1,19 +1,21 @@
 /// <reference path="jquery.d.ts" />
 
 module Templates{
-	export class Templates{
+	export class Template{
 		_workspace: Workspace.Workspace;
 		_templateCache: JQuery;
 		constructor(workspace: Workspace.Workspace){
 			this._workspace = workspace;
+		}
 
+		initialize(url: string){
 			// load templates
-			var templatesHtml: string = "";
-			$.get("html/templates.htm",
+			var self = this;
+			return($.get("/html/templates.htm",
 				function(data){
-					alert(data);
+					self._templateCache = $(data);
 				}
-			);
+			));
 		}
 	}
 }
