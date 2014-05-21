@@ -13,6 +13,7 @@ module Listings{
 
     export interface List{
     	parentUid: string;
+    	iconPath?: string;
     	items: ListItems;
     }
 
@@ -33,57 +34,42 @@ module Listings{
 		}
 
 		populate(list: List, selectEvent?: ListSelect, navigateEvent?: ListNavigate){
+			var self: ListView = this;
 			this._container.empty();
-			var ul:JQuery = $('<ul/>').addClass('list-group').appendTo(this._container);
-			for(var id in list.items){
-				var item: ListItem = list.items[id];
-				var li: JQuery = $('<li/>')
-					.addClass('list-group-item')
-					.appendTo(ul);
+			list.iconPath = self._workspace.iconPath;
+			this._workspace.template.render('list', list,
+				function(html){
+					self._container.html(html);
 
-				if(selectEvent !== null){
-					li.click(
+					self._container.find('li').click(
 						function(event){
 							event.stopPropagation();
-							ul.find('li').removeClass('selected');
+
+							var li: JQuery = $(event.target);
+							var uid: string = li.attr('data-flowuid');
+
+							self._container.find('li').removeClass('selected');
+
 							li.addClass('selected');
-							selectEvent(item.uid, li);
+							selectEvent(uid, li);
 						}
 					);
-				}
 
-				var iconUrl: string = item.icon;
-				if(icon !== null){
-					iconUrl = this._workspace.iconPath + '/32x32/' + item.icon + '.png'
-				} else {
-					iconUrl = this._workspace.iconPath + '/32x32/book_spelling.png'
-				}
-
-				var icon: JQuery = $('<img/>')
-					.attr('src', iconUrl)
-					.appendTo(li);
-
-				var description: JQuery = $('<span/>')
-					.text(item.description)
-					.appendTo(li);
-
-				var navigate: JQuery = $('<span/>')
-					.addClass('pull-right list-nav')
-					.appendTo(li);
-
-				if(navigateEvent !== null){
-					navigate.click(
+					self._container.find('li span.list-nav').click(
 						function(event){
 							event.stopPropagation();
-							navigateEvent(item.uid, li);
-						}
-					);
-				}
 
-				var navigateIcon: JQuery = $('<i/>').
-					addClass('fa fa-chevron-circle-right fa-lg pull-right')
-					.appendTo(navigate);
-			}
+							var li: JQuery = $(event.target).parent();
+							var uid: string = li.attr('data-flowuid');
+
+							self._container.find('li').removeClass('selected');
+
+							li.addClass('selected');
+							navigateEvent(uid, li);
+						}
+					);					
+				}
+			);
 		}
 	}
 }

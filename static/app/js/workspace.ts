@@ -14,11 +14,7 @@ module Workspace{
             }       
 
             this.template = new Templates.Template(this);  
-            this.template.initialize('').done(
-                function(){
-                    self.initialize();
-                } 
-            );
+            self.initialize();
         }
         initialize(){
             this.header = $('#header');
@@ -33,7 +29,6 @@ module Workspace{
                     //mainMenu.populate(<Actions.ActionElements>data);
                 }
             );
-
             this.navigate('1');            
         }
         log(): void{
@@ -49,12 +44,12 @@ module Workspace{
                     ]
                 },
                 function(uid: string, item: JQuery){
-                    alert('select');
-                    this.listview.setSelected(item);
-                    alert('after call');
+                    //alert('select');
+                    //this.listview.setSelected(item);
+                    //alert('after call');
                 },
                 function(){ 
-                    alert('navigate');
+                    //alert('navigate');
                 }
             );
         }

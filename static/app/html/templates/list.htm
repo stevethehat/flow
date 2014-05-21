@@ -1,0 +1,11 @@
+<ul class="list-group">
+	{{#each items}}
+	<li class="list-group-item" data-flowuid="{{uid}}">
+		<img src="{{../iconPath}}/32x32/{{icon}}.png"/>
+		<span>{{description}}</span>
+		<span class="pull-right list-nav">
+			<i class="fa fa-chevron-circle-right fa-lg pull-right"></i>
+		</span>
+	</li>
+	{{/each}}
+</ul>
