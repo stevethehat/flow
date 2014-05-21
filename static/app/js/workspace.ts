@@ -40,13 +40,13 @@ module Workspace{
                     parentUid: '1',
                     items:[
                         { description: 'hello1', uid: '2', icon: 'beer'},
-                        { description: 'hello2', uid: '3', icon: 'bell'},
+                        { description: 'hello2', uid: '3', icon: 'bell', 
+                            summary: 'this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary...'
+                        },
                     ]
                 },
                 function(uid: string, item: JQuery){
-                    //alert('select');
                     //this.listview.setSelected(item);
-                    //alert('after call');
                 },
                 function(){ 
                     //alert('navigate');
