@@ -87,7 +87,7 @@ ul .fa{
 }
 
 .list-group-item.selected{
-	background-color: red;
+	background-color: #999999;
 }
 
 .breadcrumb, .breadcrumb:hover, .dropdown-menu.breadcrumb li a, .dropdown-menu.breadcrumb li a:hover, .breadcrumb.dropdown-toggle.btn-default {
