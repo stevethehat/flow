@@ -82,6 +82,10 @@ ul .fa{
 	display:none;
 }
 
+.list-group-item{
+	cursor: pointer;
+}
+
 .list-group-item img {
 	margin-right: 6px;
 }
