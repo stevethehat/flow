@@ -17,19 +17,26 @@ module Workspace{
             self.initialize();
         }
         initialize(){
-            this.header = $('#header');
-            this.contentArea = $('#listing1');
+            var self: Workspace = this;
+            self.server = new Server.Server("localhost", "html");
 
-            this.contentArea.height(this.height - this.header.height() -60);
-            this.listview = new Listings.ListView(this, this.contentArea);
+            this.template.render('main',{},
+                function(mainContent){
+                    self.body.html(mainContent);
+                    self.header = $('#header');
+                    self.contentArea = $('#listing1');
 
-            this.server = new Server.Server("localhost", "html");
-            this.server.get("1", "workspacemenu", null, 
-                function(data){
-                    //mainMenu.populate(<Actions.ActionElements>data);
+                    self.contentArea.height(self.height - self.header.height() -60);
+                    self.listview = new Listings.ListView(self, self.contentArea);
+
+                    self.server.get("1", "workspacemenu", null, 
+                        function(data){
+                            //mainMenu.populate(<Actions.ActionElements>data);
+                        }
+                    );
+                    self.navigate('1'); 
                 }
-            );
-            this.navigate('1');            
+            )           
         }
         log(): void{
             alert('in log');
