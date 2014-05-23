@@ -1,6 +1,6 @@
 /// <reference path="jquery.d.ts" />
 
-module Listings{
+module Components{
     export interface ListItem {
         uid: string;
         description: string;
@@ -11,7 +11,7 @@ module Listings{
         [index: number]: ListItem;
     }
 
-    export interface List{
+    export interface ListData{
     	parentUid: string;
     	iconPath?: string;
     	items: ListItems;
@@ -43,7 +43,7 @@ module Listings{
 			alert('base setEvents');
 		}
 
-		populate(list: List, events?: ViewEvents){
+		populate(list: ListData, events?: ViewEvents){
 			this.container.empty();
 			list.iconPath = this.workspace.iconPath;
 
@@ -56,7 +56,7 @@ module Listings{
 		}		
     }
 
-	export class ListView extends View{
+	export class List extends View{
 		setEvents(events?: ViewEvents): void{
 			this.container.find('li').click((event: JQueryEventObject) => {
 					event.stopPropagation();

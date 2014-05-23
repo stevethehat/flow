@@ -9,7 +9,7 @@ module Workspace{
         private contentArea: JQuery;
         private footer: JQuery;
         private server: Server.Server;
-        private listview: Listings.ListView;
+        private listview: Components.List;
         private width: number;
         private height: number;
         
@@ -27,13 +27,13 @@ module Workspace{
             this.server = new Server.Server("localhost", "html");
 
             this.templates.render('main',{},
-                (mainContent) => {
+                (mainContent: string) => {
                     this.body.html(mainContent);
                     this.header = $('#header');
                     this.contentArea = $('#listing1');
 
                     this.contentArea.height(this.height - this.header.height() -60);
-                    this.listview = new Listings.ListView(this, this.contentArea);
+                    this.listview = new Components.List(this, this.contentArea);
 
                     this.server.get("1", "workspacemenu", null, 
                         function(data){
