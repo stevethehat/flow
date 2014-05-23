@@ -1,17 +1,18 @@
-/// <reference path="jquery.d.ts" />
-/// <reference path="handlebars.d.ts" />
+/// <reference path="libdef/jquery.d.ts" />
+/// <reference path="libdef/handlebars.d.ts" />
 
 module Flow.Templates {
 	'use strict';
+	
 	interface ITemplatesList {
 		[index: string]: HandlebarsTemplateDelegate;
 	}
 
 	export class Templates {
-		private workspace: Flow.Workspace;
+		private workspace: Workspace;
 		private templates: ITemplatesList;
 
-		constructor(workspace: Flow.Workspace) {
+		constructor(workspace: Workspace) {
 			this.workspace = workspace;
 			this.templates = {};
 
@@ -30,7 +31,7 @@ module Flow.Templates {
 				result(template(data));
 			} else {
 				$.get('/html/templates/' + id + '.htm',
-					(templateCode: string): string => {
+					(templateCode: string): void => {
 						template = Handlebars.compile(templateCode);
 						this.templates[id] = template;
 						result(template(data));

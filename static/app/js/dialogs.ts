@@ -1,8 +1,10 @@
-module Flow.Dialogs{
-	export interface Button{
+module Flow.Dialogs {
+	'use strict';
+
+	export interface IButton {
 		label: string;
 	}
-	export interface Buttons{
-		[index: number]: Button;
+	export interface IButtons {
+		[index: number]: IButton;
 	}
 }

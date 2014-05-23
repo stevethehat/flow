@@ -1,4 +1,4 @@
-/// <reference path="jquery.d.ts" />
+/// <reference path="libdef/jquery.d.ts" />
 /// <reference path="menus.ts" />
 /// <reference path="server.ts" />
 

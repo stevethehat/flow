@@ -1,16 +1,18 @@
-/// <reference path="jquery.d.ts" />
+/// <reference path="libdef/jquery.d.ts" />
 /// <reference path="actions.ts" />
 
-module Flow.Menus{
-    export interface MenuElement extends Actions.ActionElement{ 
-        subElements?:Actions.ActionElements;
+module Flow.Menus {
+    'use strict';
+
+    export interface IMenuElement extends Actions.IActionElement {
+        subElements?: Actions.IActionElements;
     }
     
-    export class BarMenu{
+    export class BarMenu {
         private _container: JQuery;
         private _containerFluid: JQuery;
-        private _workspace: Flow.Workspace;
-        constructor(workspace: Flow.Workspace, container: JQuery) {
+        private _workspace: Workspace;
+        constructor(workspace: Workspace, container: JQuery) {
             this._workspace = workspace;
             this._container = container;
             this._container
@@ -20,17 +22,13 @@ module Flow.Menus{
             this._containerFluid = this._container.append('div')
                 .addClass('container-fluid');
 
-            this._containerFluid.append("button")
+            this._containerFluid.append('button')
                 .attr('type', 'button');
 
         }
 
-        populate(elements: Actions.ActionElements): void{
+        populate(elements: Actions.IActionElements): void{
 			alert('populate' + elements);
-        }
-
-        private addElement(): void {
-
         }
     }
 }

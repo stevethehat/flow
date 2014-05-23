@@ -1,4 +1,4 @@
-/// <reference path="jquery.d.ts" />
+/// <reference path="libdef/jquery.d.ts" />
 
 module Flow.Components {
 	'use strict';
@@ -46,7 +46,7 @@ module Flow.Components {
 			alert('base setEvents');
 		}
 
-		render(data: any, events?: IViewEvents): void{
+		render(data: any, events?: IViewEvents): void {
 			this.container.empty();
 			data.iconPath = this.workspace.iconPath;
 

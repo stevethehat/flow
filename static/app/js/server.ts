@@ -1,28 +1,30 @@
-/// <reference path="jquery.d.ts" />
+/// <reference path="libdef/jquery.d.ts" />
 /// <reference path="menus.ts" />
 
-module Flow.Server{
-	export class Server{
-		constructor(host: string, baseUrl: string){
-			this._host = host;
-			this._baseUrl = baseUrl;
+module Flow.Server {
+	'use strict';
+
+	export class Server {
+		private host: string;
+		private baseUrl: string;
+
+		constructor(host: string, baseUrl: string) {
+			this.host = host;
+			this.baseUrl = baseUrl;
 		}
 
-		private _host: string;
-		private _baseUrl: string;
-
 		get(uid: string, action: string, data: any, callback: any): void{
-			var url: string = '/' + this._baseUrl + '/' + uid + '/' + action;
+			var url: string = '/' + this.baseUrl + '/' + uid + '/' + action;
 			var ajaxParameters = {
 				url: url,
-				success: function (data) {
+				success: function (data: any) {
 					callback(data);
 				},
-				error: function (XMLHttpRequest, textStatus, errorThrown) {
-					alert('Error (' + url + ') ' + XMLHttpRequest.responseText + ' ' + textStatus + ' ' + errorThrown);
+				error: function (request: any, textStatus: string, errorThrown: string) {
+					alert('Error (' + url + ') ' + request.responseText + ' ' + textStatus + ' ' + errorThrown);
 				}
-			}
+			};
 			$.ajax(ajaxParameters);
-		}	
+		}
 	}
 }
