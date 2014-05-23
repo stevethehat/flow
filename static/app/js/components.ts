@@ -30,9 +30,10 @@ module Components{
     	[index: number]: ViewEventDefinition;
     }
 
-    export class View{
+    export class BaseComponent{
 		workspace: Workspace.Workspace;
 		container: JQuery;
+		templateId: string;
 
 		constructor(workspace: Workspace.Workspace, container: JQuery){
 			this.workspace = workspace;
@@ -56,9 +57,11 @@ module Components{
 		}		
     }
 
-	export class List extends View{
+	export class List extends BaseComponent{
+		templateId = 'list';
 		setEvents(events?: ViewEvents): void{
-			this.container.find('li').click((event: JQueryEventObject) => {
+			this.container.find('li').click(
+				(event: JQueryEventObject) => {
 					event.stopPropagation();
 
 					var li: JQuery = $(event.target);
@@ -70,7 +73,8 @@ module Components{
 				}
 			);
 
-			this.container.find('li span.list-nav').click((event: JQueryEventObject) => {
+			this.container.find('li span.list-nav').click(
+				(event: JQueryEventObject) => {
 					event.stopPropagation();
 
 					var li: JQuery = $(event.target).parent();
@@ -82,5 +86,13 @@ module Components{
 				}
 			);					
 		}
+	}
+
+	export class Popup extends BaseComponent{
+		templateId = 'popup';
+	}
+
+	export class Alert extends BaseComponent{
+		templateId = 'alert';
 	}
 }
