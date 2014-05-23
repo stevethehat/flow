@@ -94,6 +94,13 @@ ul .fa{
 	background-color: #999999;
 }
 
+.list-nav{
+	width:60px;
+	cursor: pointer;
+	vertical-align: middle;
+	padding-top:10px;
+}
+
 .breadcrumb, .breadcrumb:hover, .dropdown-menu.breadcrumb li a, .dropdown-menu.breadcrumb li a:hover, .breadcrumb.dropdown-toggle.btn-default {
 	background-color: #333333;
 	color: white;
