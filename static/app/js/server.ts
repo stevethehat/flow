@@ -15,12 +15,12 @@ module Flow.Server {
 
 		get(uid: string, action: string, data: any, callback: any): void{
 			var url: string = '/' + this.baseUrl + '/' + uid + '/' + action;
-			var ajaxParameters = {
+			var ajaxParameters: JQueryAjaxSettings = {
 				url: url,
-				success: function (data: any) {
+				success: function (data: any): void {
 					callback(data);
 				},
-				error: function (request: any, textStatus: string, errorThrown: string) {
+				error: function (request: any, textStatus: string, errorThrown: string): void {
 					alert('Error (' + url + ') ' + request.responseText + ' ' + textStatus + ' ' + errorThrown);
 				}
 			};
