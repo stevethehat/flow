@@ -13,7 +13,7 @@ module Workspace{
                 this.height = window.innerHeight
             }       
 
-            this.template = new Templates.Template(this);  
+            this.template = new Templates.Templates(this);  
             self.initialize();
         }
         initialize(){
@@ -52,16 +52,23 @@ module Workspace{
                         },
                     ]
                 },
-                function(uid: string, item: JQuery){
-                    //this.listview.setSelected(item);
-                },
-                function(){ 
-                    //alert('navigate');
+                {
+                    events: [
+                        {
+                            eventName: 'select',
+                            event: function(uid: string, item: JQuery){
+                                //this.listview.setSelected(item);
+                            }   
+                        },
+                        {
+                            eventName: 'navigate',
+                            event: function(){}
+                        } 
+                    ]
                 }
             );
         }
         runAction(){
-
 
         }
         body: JQuery;
@@ -73,7 +80,7 @@ module Workspace{
         width: number;
         height: number;
         iconPath: string = '/assets/icons';
-        template: Templates.Template;
+        template: Templates.Templates;
     }
 
     $(document).ready(

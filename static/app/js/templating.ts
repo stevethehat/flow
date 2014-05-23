@@ -2,13 +2,13 @@
 /// <reference path="handlebars.d.ts" />
 
 module Templates{
-	export class Template{
+	export class Templates{
 		_workspace: Workspace.Workspace;
 		_templateCache: JQuery;
 		_templates: any;
 
 		constructor(workspace: Workspace.Workspace){
-			var self: Template = this;
+			var self: Templates = this;
 			this._workspace = workspace;
 			this._templates = {};
 
@@ -25,7 +25,7 @@ module Templates{
 		}
 
 		render(id: string, data: any, result: any){
-			var self: Template = this;
+			var self: Templates = this;
 			var html: string = '';
 			var template: any;
 
