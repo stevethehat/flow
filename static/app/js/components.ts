@@ -1,72 +1,77 @@
 /// <reference path="jquery.d.ts" />
 
-module Components{
-    export interface ListItem {
+module Components {
+	'use strict';
+	
+    export interface IListItem {
         uid: string;
         description: string;
         icon?: string;
     }
 
-    export interface ListItems {
-        [index: number]: ListItem;
+    export interface IListItems {
+        [index: number]: IListItem;
     }
 
-    export interface ListData{
+    export interface IListData {
     	parentUid: string;
     	iconPath?: string;
-    	items: ListItems;
+    	items: IListItems;
     }
 
-    export interface ViewEvent{
+    export interface IViewEvent {
     	(uid: string, element: JQuery): void;
     }
 
-    export interface ViewEventDefinition{
+    export interface IViewEventDefinition {
     	eventName: string;
-    	event: ViewEvent;
+    	event: IViewEvent;
     }
 
-    export interface ViewEvents{
-    	[index: number]: ViewEventDefinition;
+    export interface IViewEvents {
+    	[index: number]: IViewEventDefinition;
     }
 
-    export class BaseComponent{
+    export class BaseComponent {
 		workspace: Workspace.Workspace;
 		container: JQuery;
 		templateId: string;
 
-		constructor(workspace: Workspace.Workspace, container: JQuery){
+		constructor(workspace: Workspace.Workspace, container: JQuery) {
 			this.workspace = workspace;
 			this.container = container;
 		}
 
-		setEvents(events?: ViewEvents): void{
+		setEvents(events?: IViewEvents): void {
 			alert('base setEvents');
 		}
 
-		populate(list: ListData, events?: ViewEvents){
+		render(data: any, events?: IViewEvents): void{
 			this.container.empty();
-			list.iconPath = this.workspace.iconPath;
+			data.iconPath = this.workspace.iconPath;
 
-			this.workspace.templates.render('list', list,
-				(html) => {
+			this.workspace.templates.render(this.templateId, data,
+				(html: string): void => {
 					this.container.html(html);
 					this.setEvents(events);
 				}
 			);
-		}		
+		}
     }
 
-	export class List extends BaseComponent{
+	export class List extends BaseComponent {
 		templateId = 'list';
-		setEvents(events?: ViewEvents): void{
+
+		populate(list: IListData, events?: IViewEvents): void {
+			this.render(list, events);
+		}
+
+		setEvents(events?: IViewEvents): void {
 			this.container.find('li').click(
-				(event: JQueryEventObject) => {
+				(event: JQueryEventObject): void => {
 					event.stopPropagation();
 
 					var li: JQuery = $(event.target);
-					var uid: string = li.attr('data-flowuid');
-
 					this.container.find('li').removeClass('selected');
 
 					li.addClass('selected');
@@ -74,25 +79,23 @@ module Components{
 			);
 
 			this.container.find('li span.list-nav').click(
-				(event: JQueryEventObject) => {
+				(event: JQueryEventObject): void => {
 					event.stopPropagation();
 
 					var li: JQuery = $(event.target).parent();
-					var uid: string = li.attr('data-flowuid');
-
 					this.container.find('li').removeClass('selected');
 
 					li.addClass('selected');
 				}
-			);					
+			);
 		}
 	}
 
-	export class Popup extends BaseComponent{
+	export class Popup extends BaseComponent {
 		templateId = 'popup';
 	}
 
-	export class Alert extends BaseComponent{
+	export class Alert extends BaseComponent {
 		templateId = 'alert';
 	}
 }
