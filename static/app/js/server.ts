@@ -1,7 +1,7 @@
 /// <reference path="jquery.d.ts" />
 /// <reference path="menus.ts" />
 
-module Server{
+module Flow.Server{
 	export class Server{
 		constructor(host: string, baseUrl: string){
 			this._host = host;

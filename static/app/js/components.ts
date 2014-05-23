@@ -1,6 +1,6 @@
 /// <reference path="jquery.d.ts" />
 
-module Components {
+module Flow.Components {
 	'use strict';
 	
     export interface IListItem {
@@ -33,11 +33,11 @@ module Components {
     }
 
     export class BaseComponent {
-		workspace: Workspace.Workspace;
+		workspace: Flow.Workspace;
 		container: JQuery;
 		templateId: string;
 
-		constructor(workspace: Workspace.Workspace, container: JQuery) {
+		constructor(workspace: Flow.Workspace, container: JQuery) {
 			this.workspace = workspace;
 			this.container = container;
 		}

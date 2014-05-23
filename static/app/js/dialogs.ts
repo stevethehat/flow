@@ -1,4 +1,4 @@
-module Dialogs{
+module Flow.Dialogs{
 	export interface Button{
 		label: string;
 	}

@@ -1,4 +1,4 @@
-module Actions {
+module Flow.Actions {
     export interface ActionClick {
         (event: any): boolean;
     }

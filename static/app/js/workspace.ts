@@ -2,60 +2,64 @@
 /// <reference path="menus.ts" />
 /// <reference path="server.ts" />
 
-module Workspace{
+module Flow {
+    'use strict';
+
     export class Workspace {
         private body: JQuery;
         private header: JQuery;
         private contentArea: JQuery;
         private footer: JQuery;
         private server: Server.Server;
-        private listview: Components.List;
+        private listview: Flow.Components.List;
+        private alert: Flow.Components.Alert;
         private width: number;
         private height: number;
         
         public iconPath: string = '/assets/icons';
-        public templates: Templates.Templates;
+        public templates: Flow.Templates.Templates;
 
         constructor() {
             this.body = $('body');
-            if (typeof window.innerWidth != 'undefined') {
-                this.width = window.innerWidth,
-                this.height = window.innerHeight
-            }       
+            if (typeof window.innerWidth !== 'undefined') {
+                this.width = window.innerWidth;
+                this.height = window.innerHeight;
+            }
 
-            this.templates = new Templates.Templates(this);  
-            this.server = new Server.Server("localhost", "html");
+            this.templates = new Flow.Templates.Templates(this);
+            this.server = new Server.Server('localhost', 'html');
 
-            this.templates.render('main',{},
-                (mainContent: string) => {
+            this.templates.render('main', {},
+                (mainContent: string): void => {
                     this.body.html(mainContent);
                     this.header = $('#header');
-                    this.contentArea = $('#listing1');
+                    this.header = $('#footer');
+                    this.contentArea = $('.main-content');
 
-                    this.contentArea.height(this.height - this.header.height() -60);
-                    this.listview = new Components.List(this, this.contentArea);
+                    this.contentArea.height(this.height - this.header.height() - 60);
+                    this.listview = new Flow.Components.List(this, this.contentArea);
 
-                    this.server.get("1", "workspacemenu", null, 
-                        function(data){
-                            //mainMenu.populate(<Actions.ActionElements>data);
+                    this.server.get('1', 'workspacemenu', null,
+                        (data: any): void => {
+                            // mainMenu.populate(<Actions.ActionElements>data);
                         }
                     );
-                    this.navigate('1'); 
+                    this.navigate('1');
                 }
-            )
+            );
         }
 
         log(): void{
             alert('in log');
         }
 
-        navigate(uid: string){
+        navigate(uid: string): void {
             this.listview.populate(
                 {
                     parentUid: '1',
-                    items:[
+                    items: [
                         { description: 'hello1', uid: '2', icon: 'beer'},
-                        { description: 'hello2', uid: '3', icon: 'bell', 
+                        { description: 'hello2', uid: '3', icon: 'bell',
                             summary: 'this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary... this is the summary...'
                         },
                     ]
@@ -64,27 +68,29 @@ module Workspace{
                     events: [
                         {
                             eventName: 'select',
-                            event: function(uid: string, item: JQuery){
-                                //this.listview.setSelected(item);
-                            }   
+                            event: function(uid: string, item: JQuery): void {
+                                // this.listview.setSelected(item);
+                            }
                         },
                         {
                             eventName: 'navigate',
-                            event: function(){}
-                        } 
+                            event: function(): void {
+                                alert('nav clicked');
+                            }
+                        }
                     ]
                 }
             );
         }
 
-        runAction(){
-
+        runAction(): void {
+            alert('run action');
         }
     }
 
     $(document).ready(
-        function(){
-            var workspace: Workspace = new Workspace();        
+        function(): void {
+            var workspace: Workspace = new Workspace();
         }
     );
 }

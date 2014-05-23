@@ -1,7 +1,7 @@
 /// <reference path="jquery.d.ts" />
 /// <reference path="actions.ts" />
 
-module Menus{
+module Flow.Menus{
     export interface MenuElement extends Actions.ActionElement{ 
         subElements?:Actions.ActionElements;
     }
@@ -9,8 +9,8 @@ module Menus{
     export class BarMenu{
         private _container: JQuery;
         private _containerFluid: JQuery;
-        private _workspace: Workspace.Workspace;
-        constructor(workspace: Workspace.Workspace, container: JQuery) {
+        private _workspace: Flow.Workspace;
+        constructor(workspace: Flow.Workspace, container: JQuery) {
             this._workspace = workspace;
             this._container = container;
             this._container
