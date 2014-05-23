@@ -6,35 +6,32 @@ module Workspace{
     export class Workspace {
         constructor() {
             this.body = $('body');
-            var self: Workspace = this;
-
             if (typeof window.innerWidth != 'undefined') {
                 this.width = window.innerWidth,
                 this.height = window.innerHeight
             }       
 
             this.template = new Templates.Templates(this);  
-            self.initialize();
+            this.initialize();
         }
         initialize(){
-            var self: Workspace = this;
-            self.server = new Server.Server("localhost", "html");
+            this.server = new Server.Server("localhost", "html");
 
             this.template.render('main',{},
-                function(mainContent){
-                    self.body.html(mainContent);
-                    self.header = $('#header');
-                    self.contentArea = $('#listing1');
+                (mainContent) => {
+                    this.body.html(mainContent);
+                    this.header = $('#header');
+                    this.contentArea = $('#listing1');
 
-                    self.contentArea.height(self.height - self.header.height() -60);
-                    self.listview = new Listings.ListView(self, self.contentArea);
+                    this.contentArea.height(this.height - this.header.height() -60);
+                    this.listview = new Listings.ListView(this, this.contentArea);
 
-                    self.server.get("1", "workspacemenu", null, 
+                    this.server.get("1", "workspacemenu", null, 
                         function(data){
                             //mainMenu.populate(<Actions.ActionElements>data);
                         }
                     );
-                    self.navigate('1'); 
+                    this.navigate('1'); 
                 }
             )           
         }

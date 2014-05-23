@@ -43,14 +43,13 @@ module Listings{
 		}
 
 		populate(list: List, events?: ViewEvents){
-			var self: ListView = this;
 			this._container.empty();
-			list.iconPath = self._workspace.iconPath;
+			list.iconPath = this._workspace.iconPath;
 
 			this._workspace.template.render('list', list,
-				function(html){
-					self._container.html(html);
-					self.setEvents(events);
+				(html) => {
+					this._container.html(html);
+					this.setEvents(events);
 				}
 			);
 		}		
