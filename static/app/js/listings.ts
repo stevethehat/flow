@@ -31,11 +31,12 @@ module Listings{
     }
 
     export class View{
-		_workspace: Workspace.Workspace;
-		_container: JQuery;
+		workspace: Workspace.Workspace;
+		container: JQuery;
+
 		constructor(workspace: Workspace.Workspace, container: JQuery){
-			this._workspace = workspace;
-			this._container = container;
+			this.workspace = workspace;
+			this.container = container;
 		}
 
 		setEvents(events?: ViewEvents): void{
@@ -43,12 +44,12 @@ module Listings{
 		}
 
 		populate(list: List, events?: ViewEvents){
-			this._container.empty();
-			list.iconPath = this._workspace.iconPath;
+			this.container.empty();
+			list.iconPath = this.workspace.iconPath;
 
-			this._workspace.template.render('list', list,
+			this.workspace.templates.render('list', list,
 				(html) => {
-					this._container.html(html);
+					this.container.html(html);
 					this.setEvents(events);
 				}
 			);
@@ -57,25 +58,25 @@ module Listings{
 
 	export class ListView extends View{
 		setEvents(events?: ViewEvents): void{
-			this._container.find('li').click((event: JQueryEventObject) => {
+			this.container.find('li').click((event: JQueryEventObject) => {
 					event.stopPropagation();
 
 					var li: JQuery = $(event.target);
 					var uid: string = li.attr('data-flowuid');
 
-					this._container.find('li').removeClass('selected');
+					this.container.find('li').removeClass('selected');
 
 					li.addClass('selected');
 				}
 			);
 
-			this._container.find('li span.list-nav').click((event: JQueryEventObject) => {
+			this.container.find('li span.list-nav').click((event: JQueryEventObject) => {
 					event.stopPropagation();
 
 					var li: JQuery = $(event.target).parent();
 					var uid: string = li.attr('data-flowuid');
 
-					this._container.find('li').removeClass('selected');
+					this.container.find('li').removeClass('selected');
 
 					li.addClass('selected');
 				}

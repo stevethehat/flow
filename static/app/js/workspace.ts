@@ -4,6 +4,18 @@
 
 module Workspace{
     export class Workspace {
+        private body: JQuery;
+        private header: JQuery;
+        private contentArea: JQuery;
+        private footer: JQuery;
+        private server: Server.Server;
+        private listview: Listings.ListView;
+        private width: number;
+        private height: number;
+        
+        public iconPath: string = '/assets/icons';
+        public templates: Templates.Templates;
+
         constructor() {
             this.body = $('body');
             if (typeof window.innerWidth != 'undefined') {
@@ -11,13 +23,10 @@ module Workspace{
                 this.height = window.innerHeight
             }       
 
-            this.template = new Templates.Templates(this);  
-            this.initialize();
-        }
-        initialize(){
+            this.templates = new Templates.Templates(this);  
             this.server = new Server.Server("localhost", "html");
 
-            this.template.render('main',{},
+            this.templates.render('main',{},
                 (mainContent) => {
                     this.body.html(mainContent);
                     this.header = $('#header');
@@ -33,11 +42,13 @@ module Workspace{
                     );
                     this.navigate('1'); 
                 }
-            )           
+            )
         }
+
         log(): void{
             alert('in log');
         }
+
         navigate(uid: string){
             this.listview.populate(
                 {
@@ -65,19 +76,10 @@ module Workspace{
                 }
             );
         }
+
         runAction(){
 
         }
-        body: JQuery;
-        header: JQuery;
-        contentArea: JQuery;
-        footer: JQuery;
-        server: Server.Server;
-        listview: Listings.ListView;
-        width: number;
-        height: number;
-        iconPath: string = '/assets/icons';
-        template: Templates.Templates;
     }
 
     $(document).ready(

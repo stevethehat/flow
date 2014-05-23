@@ -3,21 +3,21 @@
 
 module Templates{
 	interface TemplatesList{
-		[index: number]: HandlebarsTemplateDelegate;
+		[index: string]: HandlebarsTemplateDelegate;
 	}
-	
+
 	export class Templates{
-		_workspace: Workspace.Workspace;
-		_templateCache: JQuery;
-		private _templates: TemplatesList;
+		private workspace: Workspace.Workspace;
+		private templateCache: JQuery;
+		private templates: TemplatesList;
 
 		constructor(workspace: Workspace.Workspace){
-			this._workspace = workspace;
-			this._templates = {};
+			this.workspace = workspace;
+			this.templates = {};
 
 			Handlebars.registerHelper('iconPath', 
 				(icon) => {
-					return(this._workspace.iconPath + '/32x32/' + icon + '.png');
+					return(this.workspace.iconPath + '/32x32/' + icon + '.png');
 				}	
 			);
 		}
@@ -26,15 +26,14 @@ module Templates{
 			var html: string = '';
 			var template: HandlebarsTemplateDelegate;
 
-			if(this._templates[id]){
-				template = this._templates[id];
+			if(this.templates[id]){
+				template = this.templates[id];
 				result(template(data));
 			} else {
-				//var template: any;
 				$.get('/html/templates/' + id + '.htm',
 					(templateCode: string) => {
 						template = Handlebars.compile(templateCode);
-						this._templates[id] = template;
+						this.templates[id] = template;
 						result(template(data));
 					}
 				);
